@@ -10,11 +10,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>hibernate</module>
-        <module>joda-time</module>
-        <module>java</module>
         <module>books</module>
         <module>chaos</module>
+        <module>hibernate</module>
+        <module>java</module>
+        <module>joda-time</module>
+        <module>spring</module>
     </modules>
 
 </project>
