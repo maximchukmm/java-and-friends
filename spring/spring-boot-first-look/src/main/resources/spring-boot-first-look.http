@@ -1,0 +1,60 @@
+# For a quick start check out our HTTP Requests collection (Tools|HTTP Client|Open HTTP Requests Collection).
+#
+# Following HTTP Request Live Templates are available:
+# * 'gtrp' and 'gtr' create a GET request with or without query parameters;
+# * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
+# * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
+
+
+POST http://localhost:8082/api/books/init
+###
+
+GET http://localhost:8082/api/books/
+
+###
+
+GET http://localhost:8082/api/books/title/The Art of Programming
+
+###
+
+GET http://localhost:8082/api/books/2
+
+###
+
+POST http://localhost:8082/api/books/
+Content-Type: application/json
+
+{
+"title"  : "New title",
+"author" : "Old author"
+}
+
+###
+
+PUT http://localhost:8082/api/books/4
+Content-Type: application/json
+
+{
+"id"     : 4,
+"title"  : "Updated title",
+"author" : "Old author"
+}
+
+###
+
+DELETE http://localhost:8082/api/books/4
+
+###
+
+###
+
+PUT http://localhost:8082/api/books/4
+Content-Type: application/json
+
+{
+  "id"     : 3,
+  "title"  : "Updated title",
+  "author" : "Old author"
+}
+
+###
