@@ -1,6 +1,7 @@
 package edu.hibernate.criteriaapi;
 
 import edu.hibernate.base.HibernateBaseTest;
+import edu.hibernate.util.HibernateUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +13,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Based on articles
+ * <p>
+ * https://vladmihalcea.com/jpa-criteria-api-bulk-update-delete/
+ * <p>
+ * https://www.thoughts-on-java.org/criteria-updatedelete-easy-way-to/
+ * <p>
+ */
 public class CriteriaApiBasicsTest extends HibernateBaseTest {
     @Override
     protected Class<?>[] entities() {
@@ -124,8 +135,67 @@ public class CriteriaApiBasicsTest extends HibernateBaseTest {
         });
     }
 
-    static class DoubleResult {
+    @Test
+    public void criteriaUpdate_WhenWithoutWhereClause_ThenUpdateAllEntities() {
+        doInTransaction(session -> {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaUpdate<BasicData> criteriaUpdate = builder.createCriteriaUpdate(BasicData.class);
+            Root<BasicData> root = criteriaUpdate.from(BasicData.class);
 
+            criteriaUpdate.set(root.get("integer"), 0);
+            session.createQuery(criteriaUpdate).executeUpdate();
+        });
+
+        doInTransaction(session -> {
+            List<BasicData> allEntities = HibernateUtils.selectAllJpa(session, BasicData.class);
+
+            List<BasicData> entitiesWithNonZeroInteger = allEntities
+                .stream()
+                .filter(entity -> entity.getInteger() != 0)
+                .collect(Collectors.toList());
+
+            assertTrue(entitiesWithNonZeroInteger.isEmpty());
+        });
+    }
+
+    @Test
+    public void criteriaUpdate_WhenFilterBySpecificEntities_ThenUpdateOnlyThatEntities() {
+        doInTransaction(session -> {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<BasicData> query = builder.createQuery(BasicData.class);
+            Root<BasicData> root = query.from(BasicData.class);
+
+            query.select(root)
+                .where(root.get("id").in(Arrays.asList(2L, 3L, 4L)));
+
+            List<BasicData> specificEntities = session.createQuery(query).getResultList();
+
+            CriteriaUpdate<BasicData> update = builder.createCriteriaUpdate(BasicData.class);
+            Root<BasicData> rootUpdate = update.from(BasicData.class);
+            update
+                .set(rootUpdate.get("integer"), 0)
+                .where(rootUpdate.in(specificEntities));
+
+            session.createQuery(update).executeUpdate();
+        });
+
+        doInTransaction(session -> {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<BasicData> query = builder.createQuery(BasicData.class);
+            Root<BasicData> root = query.from(BasicData.class);
+
+            query.select(root)
+                .where(root.get("id").in(Arrays.asList(2L, 3L, 4L)));
+
+            List<BasicData> updatedEntities = session.createQuery(query).getResultList();
+
+            List<BasicData> entitiesWithNonZeroInteger = updatedEntities
+                .stream()
+                .filter(entity -> entity.getInteger() != 0)
+                .collect(Collectors.toList());
+
+            assertTrue(entitiesWithNonZeroInteger.isEmpty());
+        });
     }
 
     @Entity(name = "BasicData")
