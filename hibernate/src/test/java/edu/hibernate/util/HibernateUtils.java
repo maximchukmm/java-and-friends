@@ -35,6 +35,20 @@ abstract public class HibernateUtils {
             "id, REV, REVTYPE " +
             "FROM " + getTableName(clazz) + "_AUD";
         List<Object[]> revisions = session.createNativeQuery(selectAllRevisions).getResultList();
+        return convertToRevisionPojo(revisions);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<RevisionPojo> selectAllRevisionsWithRevisionType(Session session, Class<?> clazz, RevisionType revisionType) {
+        String selectAllRevisions = "SELECT " +
+            "id, REV, REVTYPE " +
+            "FROM " + getTableName(clazz) + "_AUD " +
+            "WHERE REVTYPE = " + revisionType.getRepresentation();
+        List<Object[]> revisions = session.createNativeQuery(selectAllRevisions).getResultList();
+        return convertToRevisionPojo(revisions);
+    }
+
+    private static List<RevisionPojo> convertToRevisionPojo(List<Object[]> revisions) {
         List<RevisionPojo> revisionPojos = new ArrayList<>(revisions.size());
         for (Object[] revision : revisions) {
             RevisionPojo revisionPojo = new RevisionPojo();
