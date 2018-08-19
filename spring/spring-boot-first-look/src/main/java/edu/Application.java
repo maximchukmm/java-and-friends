@@ -6,9 +6,11 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
- * Based on article
+ * Based on articles
  * <p>
  * https://www.baeldung.com/spring-boot-start
+ * <p>
+ * https://www.baeldung.com/spring-boot-testing
  */
 @EnableJpaRepositories("edu.persistence.repo")
 @EntityScan("edu.persistence.model")
