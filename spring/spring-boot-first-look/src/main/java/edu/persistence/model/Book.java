@@ -1,19 +1,25 @@
 package edu.persistence.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String title;
@@ -33,15 +39,11 @@ public class Book {
         Book that = (Book) o;
 
         return Objects.equals(id, that.id) &&
-            Objects.equals(title, that.title) &&
-            Objects.equals(author, that.author);
+            Objects.equals(title, that.title);
     }
 
     @Override
     public int hashCode() {
-        int result = Long.hashCode(id);
-        result = 31 * result + title == null ? 0 : title.hashCode();
-        result = 31 * result + author == null ? 0 : author.hashCode();
-        return result;
+        return Objects.hash(id, title);
     }
 }
