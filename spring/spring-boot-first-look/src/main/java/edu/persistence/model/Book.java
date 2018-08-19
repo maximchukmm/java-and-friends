@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
+//todo add validation (jsr-380 - hibernate validation) and test it
 @Entity
 @Data
 @NoArgsConstructor
