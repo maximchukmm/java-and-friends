@@ -12,8 +12,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * <p>
  * https://www.baeldung.com/spring-boot-testing
  */
-@EnableJpaRepositories("edu.persistence.repo")
-@EntityScan("edu.persistence.model")
+//todo move to separate configuration and @Import it here
+// @EnableJpaRepositories("edu.persistence.repo")
+// @EntityScan("edu.persistence.model")
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
