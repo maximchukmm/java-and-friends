@@ -13,6 +13,21 @@ import java.util.List;
 import static org.joda.time.DateTimeZone.UTC;
 
 class IntervalDemo {
+    public static void main(String[] args) {
+        Interval request = new Interval(
+            new DateTime(2018, 8, 20, 9, 55, 0),
+            new DateTime(2018, 8, 20, 11, 55, 0)
+        );
+        Interval response = new Interval(
+            new DateTime(2018, 8, 20, 10, 5, 0),
+            new DateTime(2018, 8, 20, 12, 5, 0)
+        );
+
+        System.out.println(intervalsSubtraction(request, response));
+        System.out.println();
+        System.out.println(intervalsSubtraction(response, request));
+    }
+
     /**
      * Нахождение пересечений интервалов с указанным периодом времени без даты.
      *
