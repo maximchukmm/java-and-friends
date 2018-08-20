@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 public class BookServiceImplTest {
@@ -59,7 +60,7 @@ public class BookServiceImplTest {
 
     @Test
     public void getBooksGroupedByAuthor_when_Then1() {
-        Mockito.when(bookRepository.findAll()).thenReturn(books());
+        when(bookRepository.findAll()).thenReturn(books());
 
         Map<String, List<Book>> actualBooksGroupedByAuthor = bookService.getBooksGroupedByAuthor();
         Map<String, List<Book>> expectedBooksGroupedByAuthor = groupByAuthor(books());
