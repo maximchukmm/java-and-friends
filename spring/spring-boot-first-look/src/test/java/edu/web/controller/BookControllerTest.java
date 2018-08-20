@@ -2,6 +2,7 @@ package edu.web.controller;
 
 import edu.persistence.model.Book;
 import edu.persistence.repo.BookRepository;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -11,14 +12,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = {BookController.class}, secure = false)
@@ -33,9 +31,9 @@ public class BookControllerTest {
     @Test
     public void findAll_WhenFindAllBooks_ThenOk() throws Exception {
         mvc.perform(
-            get("/api/books")
+            MockMvcRequestBuilders.get("/api/books")
                 .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
+            .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
@@ -48,9 +46,31 @@ public class BookControllerTest {
         Mockito.when(bookRepository.findAll()).thenReturn(books);
 
         mvc.perform(
-            get("/api/books")
+            MockMvcRequestBuilders.get("/api/books")
                 .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(3)));
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
+    }
+
+    @Test
+    public void findByTitle_WhenFindByExistingTitle_ThenOk() throws Exception {
+        Mockito.when(bookRepository.findByTitle("Title 1"))
+            .thenReturn(new Book(1L, "Title 1", "Author 1"));
+
+        mvc.perform(
+            MockMvcRequestBuilders.get("/api/books/title/Title 1")
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void findByTitle_WhenFindByNonExistingTitle_ThenOk() throws Exception {
+        Mockito.when(bookRepository.findByTitle("Title 1"))
+            .thenReturn(null);
+
+        mvc.perform(
+            MockMvcRequestBuilders.get("/api/books/title/Title 1")
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

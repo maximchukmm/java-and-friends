@@ -17,6 +17,10 @@ GET http://localhost:8082/api/books/title/The Art of Programming
 
 ###
 
+GET http://localhost:8082/api/books/title/Uknown Title
+
+###
+
 GET http://localhost:8082/api/books/2
 
 ###
