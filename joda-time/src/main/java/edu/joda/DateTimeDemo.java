@@ -2,6 +2,7 @@ package edu.joda;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormatter;
 
 
 class DateTimeDemo {
@@ -76,5 +77,14 @@ class DateTimeDemo {
 //        System.out.println(romeBeforeDSTInUtcTimeZone.withZoneRetainFields(EUROPE_ROME));
 //        System.out.println(romeInDSTInUtcTimeZone.withZoneRetainFields(EUROPE_ROME));
 //        System.out.println(romeAfterDSTInUtcTimeZone.withZoneRetainFields(EUROPE_ROME));
+
+        System.out.println(DateTime.now());
+        System.out.println(DateTime.now().getZone().getOffset(DateTime.now()) / 1000 / 60);
+        System.out.println(DateTime.now().getZone());
+        System.out.println(DateTime.parse("2018-08-22T16:30:01Z"));
+        System.out.println(DateTime.parse("2018-08-22T16:30:01.123Z"));
+        System.out.println(DateTime.parse("2018-08-22T16:30:01.123+03:00"));
+        System.out.println(DateTime.parse("2018-08-22T16:30.5"));
+        System.out.println(DateTime.parse("2018-08-22T"));
     }
 }
