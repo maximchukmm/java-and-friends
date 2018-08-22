@@ -1,4 +1,4 @@
-package edu.hibernate.basics;
+package edu.hibernate.relationships;
 
 import edu.hibernate.base.HibernateBaseTest;
 import edu.hibernate.util.HibernateUtils;
@@ -14,8 +14,8 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-import static edu.hibernate.basics.ParentAndChildAndParentChildMappingTest.Vehicle.Type.BICYCLE;
-import static edu.hibernate.basics.ParentAndChildAndParentChildMappingTest.Vehicle.Type.UNICYCLE;
+import static edu.hibernate.relationships.ParentAndChildAndParentChildMappingTest.Vehicle.Type.BICYCLE;
+import static edu.hibernate.relationships.ParentAndChildAndParentChildMappingTest.Vehicle.Type.UNICYCLE;
 import static java.time.Month.*;
 import static org.junit.Assert.*;
 
