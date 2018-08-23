@@ -69,3 +69,6 @@ buildNumber.properties
 
 # Backup xls files
 .~*.xls*
+
+# Other
+/chaos/src/main/java/darkmagic/
