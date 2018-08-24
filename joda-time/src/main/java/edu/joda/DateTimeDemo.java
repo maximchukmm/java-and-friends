@@ -2,7 +2,9 @@ package edu.joda;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.LocalDate;
+
+import java.util.Date;
 
 
 class DateTimeDemo {
@@ -78,13 +80,104 @@ class DateTimeDemo {
 //        System.out.println(romeInDSTInUtcTimeZone.withZoneRetainFields(EUROPE_ROME));
 //        System.out.println(romeAfterDSTInUtcTimeZone.withZoneRetainFields(EUROPE_ROME));
 
-        System.out.println(DateTime.now());
-        System.out.println(DateTime.now().getZone().getOffset(DateTime.now()) / 1000 / 60);
-        System.out.println(DateTime.now().getZone());
-        System.out.println(DateTime.parse("2018-08-22T16:30:01Z"));
-        System.out.println(DateTime.parse("2018-08-22T16:30:01.123Z"));
-        System.out.println(DateTime.parse("2018-08-22T16:30:01.123+03:00"));
-        System.out.println(DateTime.parse("2018-08-22T16:30.5"));
-        System.out.println(DateTime.parse("2018-08-22T"));
+//        System.out.println(DateTime.now());
+//        System.out.println(DateTime.now().getZone().getOffset(DateTime.now()) / 1000 / 60);
+//        System.out.println(DateTime.now().getZone());
+//        System.out.println(DateTime.parse("2018-08-22T16:30:01Z"));
+//        System.out.println(DateTime.parse("2018-08-22T16:30:01.123Z"));
+//        System.out.println(DateTime.parse("2018-08-22T16:30:01.123+03:00"));
+//        System.out.println(DateTime.parse("2018-08-22T16:30.5"));
+//        System.out.println(DateTime.parse("2018-08-22T"));
+
+//        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+//
+//        DateTimeZone moscow = DateTimeZone.forID("Europe/Moscow");
+//        DateTimeZone samara = DateTimeZone.forID("Europe/Samara");
+//
+//        DateTime utc = new DateTime(2018, 8, 23, 21, 0, 0, 0, DateTimeZone.UTC);
+//        DateTime d2 = utc.withZone(moscow);
+//        DateTime d3 = utc.withZone(samara);
+//
+//        System.out.println("date time");
+//
+//        System.out.println(formatter.print(utc));
+//        System.out.println(formatter.withZone(moscow).print(d2));
+//        System.out.println(formatter.withZone(moscow).print(utc));
+//        System.out.println(formatter.print(d2));
+//
+//        System.out.println();
+//
+//        System.out.println(formatter.print(utc));
+//        System.out.println(formatter.withZone(samara).print(d3));
+//        System.out.println(formatter.withZone(samara).print(utc));
+//        System.out.println(formatter.print(d3));
+//
+//        System.out.println();
+//        System.out.println();
+//
+//        System.out.println("local date time");
+//
+//        System.out.println(formatter.print(utc.toLocalDateTime()));
+//        System.out.println(formatter.withZone(moscow).print(d2.toLocalDateTime()));
+//        System.out.println(formatter.withZone(moscow).print(utc.toLocalDateTime()));
+//        System.out.println(formatter.print(d2.toLocalDateTime()));
+//
+//        System.out.println();
+//
+//
+//        System.out.println(formatter.print(utc.toLocalDateTime()));
+//        System.out.println(formatter.withZone(samara).print(d3.toLocalDateTime()));
+//        System.out.println(formatter.withZone(samara).print(utc.toLocalDateTime()));
+//        System.out.println(formatter.print(d3.toLocalDateTime()));
+//
+//        System.out.println();
+
+//        DateTimeZone moscow = DateTimeZone.forID("Europe/Moscow");
+//        DateTimeZone samara = DateTimeZone.forID("Europe/Samara");
+//        Timestamp timestamp = Timestamp.valueOf(LocalDateTime.of(2018, 8, 23, 16, 15, 0));
+//
+//        System.out.println(timestamp);
+//
+//        System.out.println();
+//
+//        System.out.println(new DateTime(timestamp));
+//        System.out.println(new DateTime(timestamp).withZone(moscow));
+//        System.out.println(new DateTime(timestamp).withZone(samara));
+//
+//        System.out.println();
+//
+//        System.out.println(timestamp.toLocalDateTime());
+//        System.out.println(new DateTime(timestamp.toLocalDateTime().toString()));
+//        System.out.println(new DateTime(timestamp.toLocalDateTime().toString()).withZone(moscow));
+//        System.out.println(new DateTime(timestamp.toLocalDateTime().toString()).withZone(samara));
+//
+//        System.out.println();
+//
+//        System.out.println(timestamp.toInstant());
+
+        String value = "2018-08-23";
+        System.out.println("value = " + value);
+
+        LocalDate localDate = LocalDate.parse(value);
+        System.out.println("local date = " + localDate);
+
+        DateTimeZone moscow = DateTimeZone.forID("Europe/Moscow");
+        DateTimeZone samara = DateTimeZone.forID("Europe/Samara");
+
+        DateTime dateTimeMoscow = localDate.toDateTimeAtStartOfDay(moscow);
+        System.out.println("date time moscow = " + dateTimeMoscow);
+
+        DateTime dateTimeSamara = localDate.toDateTimeAtStartOfDay(samara);
+        System.out.println("date time samara = " + dateTimeSamara);
+
+        System.out.println("date time moscow millis = " + dateTimeMoscow.getMillis());
+        System.out.println("date time samara millis = " + dateTimeSamara.getMillis());
+
+        Date dateMoscow = new Date(dateTimeMoscow.getMillis());
+        System.out.println("date moscow = " + dateMoscow);
+        Date dateSamara = new Date(dateTimeSamara.getMillis());
+        System.out.println("date samara = " + dateSamara);
+
+        System.out.println();
     }
 }
