@@ -5,7 +5,6 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NavigableSet;
 import java.util.TreeSet;
@@ -16,26 +15,41 @@ public class FormattersDemo {
     private static final DateTimeZone ZONE = DateTimeZone.forID("Europe/Moscow");
 
     public static void main(String[] args) {
-        List<DateTime> dates = new ArrayList<>();
-        for (int i = 0; i < 1_000_000; i++) {
-            dates.add(DateTime.now(DateTimeZone.UTC).plusDays(i));
+//        List<DateTime> dates = new ArrayList<>();
+//        for (int i = 0; i < 1_000_000; i++) {
+//            dates.add(DateTime.now(DateTimeZone.UTC).plusDays(i));
+//        }
+//
+//        long start1 = System.currentTimeMillis();
+//        listWithStream(dates);
+//        long end1 = System.currentTimeMillis();
+//
+//        long start2 = System.currentTimeMillis();
+//        treeSet(dates);
+//        long end2 = System.currentTimeMillis();
+//
+//        long start3 = System.currentTimeMillis();
+//        withProcessing(dates);
+//        long end3 = System.currentTimeMillis();
+//
+//        System.out.println("First  : " + (end1 - start1));
+//        System.out.println("Second : " + (end2 - start2));
+//        System.out.println("Third  : " + (end3 - start3));
+
+//        DateTime dateTime = new DateTime(2018, 8, 23, 21, 0, 0, 0, DateTimeZone.UTC);
+//        System.out.println(FORMATTER.print(dateTime));
+//        System.out.println(FORMATTER.print(dateTime.withZone(ZONE)));
+
+        NavigableSet<DateTime> dates = new TreeSet<>();
+        for (int i = 0; i < 10; i++ ){
+            dates.add(DateTime.now().plusMinutes(i).withMillisOfSecond(0).withSecondOfMinute(0));
         }
-
-        long start1 = System.currentTimeMillis();
-        listWithStream(dates);
-        long end1 = System.currentTimeMillis();
-
-        long start2 = System.currentTimeMillis();
-        treeSet(dates);
-        long end2 = System.currentTimeMillis();
-
-        long start3 = System.currentTimeMillis();
-        withProcessing(dates);
-        long end3 = System.currentTimeMillis();
-
-        System.out.println("First  : " + (end1 - start1));
-        System.out.println("Second : " + (end2 - start2));
-        System.out.println("Third  : " + (end3 - start3));
+        System.out.println(dates);
+        List<String> stringDates = dates
+            .stream()
+            .map(DateTime::toString)
+            .collect(Collectors.toList());
+        System.out.println(stringDates);
     }
 
     private static void withProcessing(List<DateTime> dates) {
