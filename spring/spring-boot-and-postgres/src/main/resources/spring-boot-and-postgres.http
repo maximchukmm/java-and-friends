@@ -5,7 +5,13 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST http://localhost:8082/api/joda-time/init
+
+POST http://localhost:8082/api/joda-time/select
+Content-Type: application/json
+
+{
+  "query": "select to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'UTC') as char_date_time_utc from joda_time"
+}
 
 ###
 
@@ -13,34 +19,7 @@ POST http://localhost:8082/api/joda-time/select
 Content-Type: application/json
 
 {
-  "query" : "select * from joda_time"
+  "query": "select * from joda_time"
 }
-###
-
-POST http://localhost:8082/api/joda-time/select
-Content-Type: application/json
-
-{
-  "query" : "select start AT TIME ZONE 'UTC' from joda_time"
-}
-###
-
-POST http://localhost:8082/api/joda-time/select
-Content-Type: application/json
-
-{
-  "query" : "select start AT TIME ZONE 'Europe/Moscow' from joda_time"
-}
-###
-
-POST http://localhost:8082/api/joda-time/select
-Content-Type: application/json
-
-{
-  "query" : "select start AT TIME ZONE 'Europe/Samara' from joda_time"
-}
-###
-
-DELETE http://localhost:8082/api/joda-time/delete-all
 
 ###

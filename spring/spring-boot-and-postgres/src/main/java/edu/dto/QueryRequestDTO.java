@@ -1,10 +1,10 @@
-package edu.service;
+package edu.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class QueryDTO {
+public class QueryRequestDTO {
     private String query;
 }

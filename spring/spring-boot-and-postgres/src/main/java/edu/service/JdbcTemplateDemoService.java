@@ -1,5 +1,8 @@
 package edu.service;
 
+import edu.dto.QueryRequestDTO;
+import edu.dto.QueryResponseDTO;
+
 public interface JdbcTemplateDemoService {
-    void executeAndLogSelectQuery(String selectQuery);
+    QueryResponseDTO select(QueryRequestDTO request);
 }
