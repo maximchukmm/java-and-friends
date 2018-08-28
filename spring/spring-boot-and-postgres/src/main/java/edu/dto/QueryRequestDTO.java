@@ -7,4 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QueryRequestDTO {
     private String query;
+
+    public QueryRequestDTO(String query) {
+        this.query = query;
+    }
 }
