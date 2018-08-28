@@ -73,7 +73,7 @@ public class InitServiceImpl implements InitService {
     }
 
     private void initDates() {
-        DateTime dateTime = new DateTime(2018, 8, 23, 5, 0, 0, 0, DateTimeZone.forID("Europe/Moscow"));
+        DateTime dateTime = new DateTime(2018, 8, 23, 0, 0, 0, 0, DateTimeZone.UTC);
         for (int i = 0; i < 5; i++) {
             jodaTimeRepository.save(new JodaTime(dateTime.plusHours(i)));
         }
