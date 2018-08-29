@@ -28,7 +28,7 @@ POST http://localhost:8082/api/joda-time/select-with-params
 Content-Type: application/json
 
 {
-  "query": "select start, to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'Europe/Moscow') from joda_time where start = minus_tz_offset(@date, 'Europe/Moscow') order by start limit 3",
+  "query": "select start, to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'Europe/Moscow') from joda_time where start = minus_tz_offset(@date, 'Europe/Moscow')",
   "params": [
     {
       "name": "date",
@@ -44,7 +44,7 @@ POST http://localhost:8082/api/joda-time/select-with-params
 Content-Type: application/json
 
 {
-  "query": "select start, to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'Europe/Samara') from joda_time where start = minus_tz_offset(@date, 'Europe/Samara') order by start limit 3",
+  "query": "select start, to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'Europe/Samara') from joda_time where start = minus_tz_offset(@date, 'Europe/Samara')",
   "params": [
     {
       "name": "date",
@@ -60,12 +60,33 @@ POST http://localhost:8082/api/joda-time/select-with-params
 Content-Type: application/json
 
 {
-  "query": "select start, to_char_with_tz(start, 'HH24:MI:SS', 'Europe/Samara') from joda_time where start = minus_tz_offset(@date, 'Europe/Samara') order by start limit 3",
+  "query": "select start, to_char_with_tz(start, 'HH24:MI:SS', 'Europe/Samara') from joda_time where start = minus_tz_offset(@date, 'Europe/Samara')",
   "params": [
     {
       "name": "date",
       "value": "2018-08-24",
       "type": "DATE"
+    }
+  ]
+}
+
+###
+
+POST http://localhost:8082/api/joda-time/select-with-params
+Content-Type: application/json
+
+{
+  "query": "select start, to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'UTC') from joda_time where start = minus_tz_offset(@date, @param_zone) order by start",
+  "params": [
+    {
+      "name": "date",
+      "value": "2018-08-24",
+      "type": "DATE"
+    },
+    {
+      "name" : "param_zone",
+      "value": "UTC",
+      "type" : "STRING"
     }
   ]
 }
