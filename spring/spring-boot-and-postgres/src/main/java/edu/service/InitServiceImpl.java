@@ -35,19 +35,19 @@ public class InitServiceImpl implements InitService {
             "AS 'SELECT date_time_value - (date_time_value AT TIME ZONE ''UTC'' - date_time_value AT TIME ZONE time_zone)'\n" +
             "LANGUAGE SQL\n" +
             "IMMUTABLE\n" +
-            "RETURNS NULL ON NULL INPUT ;";
+            "RETURNS NULL ON NULL INPUT;";
         String plusTimeZoneOffsetFunction = "CREATE OR REPLACE FUNCTION plus_tz_offset(date_time_value TIMESTAMP, time_zone varchar)\n" +
             "  RETURNS TIMESTAMP\n" +
             "AS 'SELECT date_time_value + (date_time_value - date_time_value AT TIME ZONE time_zone)'\n" +
             "LANGUAGE SQL\n" +
             "IMMUTABLE\n" +
-            "RETURNS NULL ON NULL INPUT ;";
+            "RETURNS NULL ON NULL INPUT;";
         String toCharWithTimeZoneFunction = "CREATE OR REPLACE FUNCTION to_char_with_tz(date_time_value TIMESTAMP, time_format varchar, time_zone varchar)\n" +
             "  RETURNS varchar\n" +
             "AS 'SELECT to_char(plus_tz_offset((date_time_value AT TIME ZONE ''UTC'') :: TIMESTAMP, time_zone), time_format)'\n" +
             "LANGUAGE SQL\n" +
             "IMMUTABLE\n" +
-            "RETURNS NULL ON NULL INPUT ;";
+            "RETURNS NULL ON NULL INPUT;";
 
         jdbcTemplate.execute(minusTimeZoneOffsetFunction);
         jdbcTemplate.execute(plusTimeZoneOffsetFunction);
