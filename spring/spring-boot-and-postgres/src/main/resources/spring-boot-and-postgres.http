@@ -10,7 +10,7 @@ POST http://localhost:8082/api/joda-time/select
 Content-Type: application/json
 
 {
-  "query": "select to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'UTC') as char_date_time_utc from joda_time"
+  "query": "select * from joda_time"
 }
 
 ###
@@ -19,7 +19,55 @@ POST http://localhost:8082/api/joda-time/select
 Content-Type: application/json
 
 {
-  "query": "select * from joda_time"
+  "query": "select start, to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'Europe/Moscow') from joda_time order by start limit 3"
+}
+
+###
+
+POST http://localhost:8082/api/joda-time/select-with-params
+Content-Type: application/json
+
+{
+  "query": "select start, to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'Europe/Moscow') from joda_time where start = minus_tz_offset(@date, 'Europe/Moscow') order by start limit 3",
+  "params": [
+    {
+      "name": "date",
+      "value": "2018-08-24",
+      "type": "DATE"
+    }
+  ]
+}
+
+###
+
+POST http://localhost:8082/api/joda-time/select-with-params
+Content-Type: application/json
+
+{
+  "query": "select start, to_char_with_tz(start, 'YYYY-MM-DD HH24:MI:SS', 'Europe/Samara') from joda_time where start = minus_tz_offset(@date, 'Europe/Samara') order by start limit 3",
+  "params": [
+    {
+      "name": "date",
+      "value": "2018-08-24",
+      "type": "DATE"
+    }
+  ]
+}
+
+###
+
+POST http://localhost:8082/api/joda-time/select-with-params
+Content-Type: application/json
+
+{
+  "query": "select start, to_char_with_tz(start, 'HH24:MI:SS', 'Europe/Samara') from joda_time where start = minus_tz_offset(@date, 'Europe/Samara') order by start limit 3",
+  "params": [
+    {
+      "name": "date",
+      "value": "2018-08-24",
+      "type": "DATE"
+    }
+  ]
 }
 
 ###

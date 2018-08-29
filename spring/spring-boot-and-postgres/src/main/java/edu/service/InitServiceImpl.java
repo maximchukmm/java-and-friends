@@ -29,52 +29,34 @@ public class InitServiceImpl implements InitService {
         initFunctions();
     }
 
-    //todo переписать в верхнем регистре
     private void initFunctions() {
-        String toTimestampWithTimeZoneFunction = "create or replace function to_timestamp_with_tz(date_time_value timestamp with time zone, time_zone varchar)\n" +
-            "  returns timestamp with time zone\n" +
-            "as 'select (date_time_value + extract(epoch from (date_time_value - make_timestamptz(\n" +
-            "                                                                      extract(year from date_time_value) :: int,\n" +
-            "                                                                      extract(month from date_time_value) :: int,\n" +
-            "                                                                      extract(day from date_time_value) :: int,\n" +
-            "                                                                      extract(hour from date_time_value) :: int,\n" +
-            "                                                                      extract(minute from date_time_value) :: int,\n" +
-            "                                                                      extract(second from date_time_value),\n" +
-            "                                                                      time_zone\n" +
-            "    ))) * interval ''1 second'')'\n" +
-            "language sql\n" +
-            "immutable\n" +
-            "returns null on null input;";
+        String minusTimeZoneOffsetFunction = "CREATE OR REPLACE FUNCTION minus_tz_offset(date_time_value TIMESTAMP, time_zone varchar)\n" +
+            "  RETURNS TIMESTAMP\n" +
+            "AS 'SELECT date_time_value - (date_time_value AT TIME ZONE ''UTC'' - date_time_value AT TIME ZONE time_zone)'\n" +
+            "LANGUAGE SQL\n" +
+            "IMMUTABLE\n" +
+            "RETURNS NULL ON NULL INPUT ;";
+        String plusTimeZoneOffsetFunction = "CREATE OR REPLACE FUNCTION plus_tz_offset(date_time_value TIMESTAMP, time_zone varchar)\n" +
+            "  RETURNS TIMESTAMP\n" +
+            "AS 'SELECT date_time_value + (date_time_value - date_time_value AT TIME ZONE time_zone)'\n" +
+            "LANGUAGE SQL\n" +
+            "IMMUTABLE\n" +
+            "RETURNS NULL ON NULL INPUT ;";
+        String toCharWithTimeZoneFunction = "CREATE OR REPLACE FUNCTION to_char_with_tz(date_time_value TIMESTAMP, time_format varchar, time_zone varchar)\n" +
+            "  RETURNS varchar\n" +
+            "AS 'SELECT to_char(plus_tz_offset((date_time_value AT TIME ZONE ''UTC'') :: TIMESTAMP, time_zone), time_format)'\n" +
+            "LANGUAGE SQL\n" +
+            "IMMUTABLE\n" +
+            "RETURNS NULL ON NULL INPUT ;";
 
-        String toCharWithTimeZoneFunction = "create or replace function to_char_with_tz(date_time_value timestamp, time_format varchar, time_zone varchar)\n" +
-            "  returns varchar\n" +
-            "as 'select to_char(to_timestamp_with_tz(date_time_value at time zone ''UTC'', time_zone), time_format)'\n" +
-            "language sql\n" +
-            "immutable\n" +
-            "returns null on null input;";
-
-        String toTimestampWithUtc = "create or replace function to_utc(date_time_value timestamp, time_zone varchar)\n" +
-            "  returns timestamp with time zone\n" +
-            "as 'select make_timestamptz(\n" +
-            "             extract(year from date_time_value :: timestamp) :: int,\n" +
-            "             extract(month from date_time_value :: timestamp) :: int,\n" +
-            "             extract(day from date_time_value :: timestamp) :: int,\n" +
-            "             extract(hour from date_time_value :: timestamp) :: int,\n" +
-            "             extract(minute from date_time_value :: timestamp) :: int,\n" +
-            "             extract(second from date_time_value :: timestamp),\n" +
-            "             time_zone)'\n" +
-            "language sql\n" +
-            "immutable\n" +
-            "returns null on null input;";
-
-        jdbcTemplate.execute(toTimestampWithTimeZoneFunction);
+        jdbcTemplate.execute(minusTimeZoneOffsetFunction);
+        jdbcTemplate.execute(plusTimeZoneOffsetFunction);
         jdbcTemplate.execute(toCharWithTimeZoneFunction);
-        jdbcTemplate.execute(toTimestampWithUtc);
     }
 
     private void initDates() {
         DateTime dateTime = new DateTime(2018, 8, 23, 0, 0, 0, 0, DateTimeZone.UTC);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 48; i++) {
             jodaTimeRepository.save(new JodaTime(dateTime.plusHours(i)));
         }
         jodaTimeRepository.flush();

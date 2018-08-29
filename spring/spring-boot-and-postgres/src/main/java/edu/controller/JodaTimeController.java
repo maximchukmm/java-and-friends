@@ -23,7 +23,12 @@ public class JodaTimeController {
     }
 
     @PostMapping("/select")
-    public QueryResponseDTO select(@RequestBody QueryRequestDTO select) {
-        return jdbcTemplateDemoService.select(select);
+    public QueryResponseDTO select(@RequestBody QueryRequestDTO request) {
+        return jdbcTemplateDemoService.select(request);
+    }
+
+    @PostMapping("select-with-params")
+    public QueryResponseDTO selectWithParams(@RequestBody QueryRequestDTO request) {
+        return jdbcTemplateDemoService.selectWithParams(request);
     }
 }
