@@ -2,27 +2,28 @@ package edu.joda;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
-import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 class DateTimeDemo {
     private static final DateTimeZone UTC = DateTimeZone.UTC;
     private static final DateTimeZone EUROPE_MOSCOW = DateTimeZone.forID("Europe/Moscow");
 
-    public static DateTime roundToFiveMinutes(DateTime dateTime) {
-        int mod = dateTime.getMinuteOfHour() % 5;
-        switch (mod) {
-            case 1:
-            case 2:
-                return dateTime.minusMinutes(mod).withSecondOfMinute(0).withMillisOfSecond(0);
-            case 3:
-            case 4:
-                return dateTime.plusMinutes(5 - mod).withSecondOfMinute(0).withMillisOfSecond(0);
-            default:
-                return dateTime.withSecondOfMinute(0).withMillisOfSecond(0);
+    private static final DateTimeFormatter HOUR_MINUTE_FORMATTER = DateTimeFormat.forPattern("HH:mm");
+
+    private static List<String> hoursAndMinutes(DateTime from, DateTime to, int stepInMinutes) {
+        final List<String> dates = new ArrayList<>();
+        DateTime currentMinutes = from.secondOfDay().withMinimumValue();
+        DateTime endOfDay = to.secondOfDay().withMaximumValue();
+        while (currentMinutes.isBefore(endOfDay)) {
+            dates.add(HOUR_MINUTE_FORMATTER.print(currentMinutes));
+            currentMinutes = currentMinutes.plusMinutes(stepInMinutes);
         }
+        return dates;
     }
 
     public static void main(String[] args) {
@@ -155,29 +156,43 @@ class DateTimeDemo {
 //
 //        System.out.println(timestamp.toInstant());
 
-        String value = "2018-08-23";
-        System.out.println("value = " + value);
+//        String value = "2018-08-23";
+//        System.out.println("value = " + value);
+//
+//        LocalDate localDate = LocalDate.parse(value);
+//        System.out.println("local date = " + localDate);
+//
+//        DateTimeZone moscow = DateTimeZone.forID("Europe/Moscow");
+//        DateTimeZone samara = DateTimeZone.forID("Europe/Samara");
+//
+//        DateTime dateTimeMoscow = localDate.toDateTimeAtStartOfDay(moscow);
+//        System.out.println("date time moscow = " + dateTimeMoscow);
+//
+//        DateTime dateTimeSamara = localDate.toDateTimeAtStartOfDay(samara);
+//        System.out.println("date time samara = " + dateTimeSamara);
+//
+//        System.out.println("date time moscow millis = " + dateTimeMoscow.getMillis());
+//        System.out.println("date time samara millis = " + dateTimeSamara.getMillis());
+//
+//        Date dateMoscow = new Date(dateTimeMoscow.getMillis());
+//        System.out.println("date moscow = " + dateMoscow);
+//        Date dateSamara = new Date(dateTimeSamara.getMillis());
+//        System.out.println("date samara = " + dateSamara);
+//
+//        System.out.println();
 
-        LocalDate localDate = LocalDate.parse(value);
-        System.out.println("local date = " + localDate);
+//        LocalDate localDate = new LocalDate(2018, 8, 23);
+//        LocalTime localTime = new LocalTime(10, 0, 0);
+//
+//        System.out.println(localDate.toDateTime(localTime));
+//        System.out.println(localDate.toDateTime(localTime, DateTimeZone.UTC));
+//        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("Europe/Moscow")));
+//        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("Europe/Samara")));
+//        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("America/Chicago")));
 
-        DateTimeZone moscow = DateTimeZone.forID("Europe/Moscow");
-        DateTimeZone samara = DateTimeZone.forID("Europe/Samara");
-
-        DateTime dateTimeMoscow = localDate.toDateTimeAtStartOfDay(moscow);
-        System.out.println("date time moscow = " + dateTimeMoscow);
-
-        DateTime dateTimeSamara = localDate.toDateTimeAtStartOfDay(samara);
-        System.out.println("date time samara = " + dateTimeSamara);
-
-        System.out.println("date time moscow millis = " + dateTimeMoscow.getMillis());
-        System.out.println("date time samara millis = " + dateTimeSamara.getMillis());
-
-        Date dateMoscow = new Date(dateTimeMoscow.getMillis());
-        System.out.println("date moscow = " + dateMoscow);
-        Date dateSamara = new Date(dateTimeSamara.getMillis());
-        System.out.println("date samara = " + dateSamara);
-
-        System.out.println();
+        DateTime from = new DateTime(2018, 8, 20, 0, 0, 0, 0);
+        DateTime to = new DateTime(2018, 8, 20, 1, 0, 0, 0);
+        List<String> strings = hoursAndMinutes(from, to, 15);
+        strings.forEach(System.out::println);
     }
 }
