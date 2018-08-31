@@ -51,36 +51,6 @@ public class DateTimeTest {
     }
 
     @Test
-    public void roundToFiveMinutes_WhenMinutesMultipleTo5_ThenReturnDateTimeWithSameMinutesAndZeroSecondsAndMilliseconds() {
-        DateTime dateTime = dateTimeWithMillis("2018-12-20 15:00:02.123");
-        DateTime expectedDateTime = dateTimeWithMillis("2018-12-20 15:00:00.000");
-
-        DateTime actualDateTime = DateTimeDemo.roundToFiveMinutes(dateTime);
-
-        assertEquals(expectedDateTime, actualDateTime);
-    }
-
-    @Test
-    public void roundToFiveMinutes_WhenMinutesMod5LessThen3_ThenReturnDateTimeWithMinutesDownToTheNext5MinutesAndZeroSecondsAndMilliseconds() {
-        DateTime dateTime = dateTimeWithMillis("2018-12-20 15:17:59.321");
-        DateTime expectedDateTime = dateTimeWithMillis("2018-12-20 15:15:00.000");
-
-        DateTime actualDateTime = DateTimeDemo.roundToFiveMinutes(dateTime);
-
-        assertEquals(expectedDateTime, actualDateTime);
-    }
-
-    @Test
-    public void roundToFiveMinutes_WhenMinutesMod5GreaterThanOrEqualsTo3_ThenReturnDateTimeWithMinutesUpToTheNext5MinutesAndZeroSecondsAndMilliseconds() {
-        DateTime dateTime = dateTimeWithMillis("2018-12-20 15:28:32.111");
-        DateTime expectedDateTime = dateTimeWithMillis("2018-12-20 15:30:00.000");
-
-        DateTime actualDateTime = DateTimeDemo.roundToFiveMinutes(dateTime);
-
-        assertEquals(expectedDateTime, actualDateTime);
-    }
-
-    @Test
     public void getMillis_WhenSameMomentOfTimeWithSameTimeZones_ThenReturnSameMillis() {
         DateTime utc1 = dateTimeWithMillis("2018-12-20 15:30:00.000");
         DateTime utc2 = dateTimeWithMillis("2018-12-20 15:30:00.000");
