@@ -12,11 +12,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = {BookController.class}, secure = false)
@@ -29,11 +32,29 @@ public class BookControllerTest {
     private BookRepository bookRepository;
 
     @Test
+    public void create_WhenEmptyBody() throws Exception {
+        mvc.perform(post("/api/books").content("{  }").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void create_WhenEmptyAuthor() throws Exception {
+        mvc.perform(post("/api/books").content("{ \"title\": \"foo\", \"author\": \"\" }").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void create_WhenBlankAuthor() throws Exception {
+        mvc.perform(post("/api/books").content("{ \"title\": \"foo\", \"author\": \"  \" }").contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void findAll_WhenFindAllBooks_ThenOk() throws Exception {
         mvc.perform(
-            MockMvcRequestBuilders.get("/api/books")
+            get("/api/books")
                 .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk());
+            .andExpect(status().isOk());
     }
 
     @Test
@@ -46,10 +67,10 @@ public class BookControllerTest {
         Mockito.when(bookRepository.findAll()).thenReturn(books);
 
         mvc.perform(
-            MockMvcRequestBuilders.get("/api/books")
+            get("/api/books")
                 .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", Matchers.hasSize(3)));
     }
 
     @Test
@@ -58,9 +79,9 @@ public class BookControllerTest {
             .thenReturn(new Book(1L, "Title 1", "Author 1"));
 
         mvc.perform(
-            MockMvcRequestBuilders.get("/api/books/title/Title 1")
+            get("/api/books/title/Title 1")
                 .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk());
+            .andExpect(status().isOk());
     }
 
     @Test
@@ -69,8 +90,8 @@ public class BookControllerTest {
             .thenReturn(null);
 
         mvc.perform(
-            MockMvcRequestBuilders.get("/api/books/title/Title 1")
+            get("/api/books/title/Title 1")
                 .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk());
+            .andExpect(status().isOk());
     }
 }

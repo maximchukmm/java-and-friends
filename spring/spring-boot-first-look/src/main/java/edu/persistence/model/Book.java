@@ -4,11 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 //todo add validation (jsr-380 - hibernate validation) and test it
@@ -26,6 +23,7 @@ public class Book {
     private String title;
 
     @Column(nullable = false)
+    @NotBlank
     private String author;
 
     public Book(String title, String author) {

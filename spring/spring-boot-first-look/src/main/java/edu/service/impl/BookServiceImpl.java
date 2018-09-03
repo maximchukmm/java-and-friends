@@ -3,6 +3,7 @@ package edu.service.impl;
 import edu.persistence.model.Book;
 import edu.persistence.repo.BookRepository;
 import edu.service.iface.BookService;
+import edu.web.dto.AuthorsBooksDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class BookServiceImpl implements BookService {
 
+    private final BookRepository bookRepository;
+
     @Autowired
-    private BookRepository bookRepository;
+    public BookServiceImpl(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @Override
     public Map<String, List<Book>> getBooksGroupedByAuthor() {
@@ -23,5 +28,14 @@ public class BookServiceImpl implements BookService {
             .of(bookRepository.findAll())
             .stream()
             .collect(Collectors.groupingBy(Book::getAuthor));
+    }
+
+    @Override
+    public AuthorsBooksDTO findAuthorsBooks() {
+        Map<String, List<Book>> authorsBooks = Streamable
+            .of(bookRepository.findAll())
+            .stream()
+            .collect(Collectors.groupingBy(Book::getAuthor));
+        return new AuthorsBooksDTO(authorsBooks);
     }
 }
