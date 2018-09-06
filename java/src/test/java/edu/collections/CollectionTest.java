@@ -3,9 +3,9 @@ package edu.collections;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CollectionTest {
 
@@ -68,5 +68,38 @@ public class CollectionTest {
         List<Integer> list = Arrays.asList(removingElement, 2);
 
         list.remove(removingElement);
+    }
+
+    @Test
+    public void removeIf_WhenRemoveFromEmptyCollection_ThenReturnFalse() {
+        List<Integer> list = new ArrayList<>();
+
+        assertFalse(list.removeIf(i -> i >= 5));
+    }
+
+    @Test
+    public void removeIf_WhenNonEmptyCollectionDoesNotContainElementsThatSatisfyTheGivenPredicate_ThenDoNotRemoveElementsAndReturnFalse() {
+        List<Integer> list = new ArrayList<>();
+        IntStream.range(6, 10).forEach(list::add);
+
+        assertFalse(list.removeIf(i -> i <= 5));
+
+        List<Integer> expected = new ArrayList<>();
+        IntStream.range(6, 10).forEach(expected::add);
+
+        assertTrue(expected.containsAll(list));
+    }
+
+    @Test
+    public void removeIf_WhenCollectionContainsElementsThatSatisfyTheGivenPredicate_ThenRemoveThatElementsAndReturnTrue() {
+        List<Integer> list = new ArrayList<>();
+        IntStream.range(1, 10).forEach(list::add);
+
+        assertTrue(list.removeIf(i -> i <= 5));
+
+        List<Integer> expected = new ArrayList<>();
+        IntStream.range(6, 10).forEach(expected::add);
+
+        assertTrue(expected.containsAll(list));
     }
 }

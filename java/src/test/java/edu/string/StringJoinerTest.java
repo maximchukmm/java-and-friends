@@ -40,9 +40,9 @@ public class StringJoinerTest {
     public void toString_WhenAddOneStringToStringJoiner_ThenReturnThatStringWithoutDelimiter() {
         String value = "value";
         stringJoiner.add(value);
-        String expectedString = value;
 
         String actualString = stringJoiner.toString();
+        String expectedString = "value";
 
         assertEquals(expectedString, actualString);
     }
@@ -58,5 +58,15 @@ public class StringJoinerTest {
         String actualString = stringJoiner.toString();
 
         assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void toString_WhenStringJoinerWithPrefixAndPostfix() {
+        stringJoiner = new StringJoiner(":", "'", "'");
+
+        String expected = "'value1:value2'";
+        String actual = stringJoiner.add("value1").add("value2").toString();
+
+        assertEquals(expected, actual);
     }
 }
