@@ -6,6 +6,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -40,19 +41,38 @@ public class FormattersDemo {
 //        System.out.println(FORMATTER.print(dateTime));
 //        System.out.println(FORMATTER.print(dateTime.withZone(ZONE)));
 
-        NavigableSet<DateTime> dates = new TreeSet<>();
-        for (int i = 0; i < 10; i++ ){
-            dates.add(DateTime.now().plusMinutes(i).withMillisOfSecond(0).withSecondOfMinute(0));
-        }
-        System.out.println(dates);
-        List<String> stringDates = dates
-            .stream()
-            .map(DateTime::toString)
-            .collect(Collectors.toList());
-        System.out.println(stringDates);
-    }
+//        NavigableSet<DateTime> dates = new TreeSet<>();
+//        for (int i = 0; i < 10; i++ ){
+//            dates.add(DateTime.now().plusMinutes(i).withMillisOfSecond(0).withSecondOfMinute(0));
+//        }
+//        System.out.println(dates);
+//        List<String> stringDates = dates
+//            .stream()
+//            .map(DateTime::toString)
+//            .collect(Collectors.toList());
+//        System.out.println(stringDates);
 
-    private static void withProcessing(List<DateTime> dates) {
+//        DateTimeFormatter dayFormatter = DateTimeFormat.forPattern("dd MMMM").withLocale(Locale.forLanguageTag("ru-RU"));
+//        DateTime dateTime = new DateTime(2018, 8, 20, 21, 0, 0, 0, DateTimeZone.UTC);
+//
+//        System.out.println(dayFormatter.print(dateTime));
+//        System.out.println(dayFormatter.print(dateTime.withZone(DateTimeZone.forID("Europe/Moscow"))));
+//
+//        System.out.println();
+//
+//        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+//        System.out.println(dateTimeFormatter.print(dateTime));
+//        System.out.println(dateTimeFormatter.print(dateTime.withZone(DateTimeZone.forID("Europe/Moscow"))));
+//
+//        System.out.println();
+//
+//        System.out.println(dateTime.toString());
+//        System.out.println(dateTime.toString(dateTimeFormatter));
+//
+//        System.out.println();
+//
+//        System.out.println(dateTime.withZone(DateTimeZone.forID("Europe/Moscow")).toString());
+//        System.out.println(dateTime.withZone(DateTimeZone.forID("Europe/Moscow")).toString(dateTimeFormatter));
 
     }
 
