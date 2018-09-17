@@ -1,7 +1,6 @@
 package edu.joda;
 
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
+import org.joda.time.*;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -12,19 +11,6 @@ import java.util.List;
 class DateTimeDemo {
     private static final DateTimeZone UTC = DateTimeZone.UTC;
     private static final DateTimeZone EUROPE_MOSCOW = DateTimeZone.forID("Europe/Moscow");
-
-    private static final DateTimeFormatter HOUR_MINUTE_FORMATTER = DateTimeFormat.forPattern("HH:mm");
-
-    private static List<String> hoursAndMinutes(DateTime from, DateTime to, int stepInMinutes) {
-        final List<String> dates = new ArrayList<>();
-        DateTime currentMinutes = from.secondOfDay().withMinimumValue();
-        DateTime endOfDay = to.secondOfDay().withMaximumValue();
-        while (currentMinutes.isBefore(endOfDay)) {
-            dates.add(HOUR_MINUTE_FORMATTER.print(currentMinutes));
-            currentMinutes = currentMinutes.plusMinutes(stepInMinutes);
-        }
-        return dates;
-    }
 
     public static void main(String[] args) {
 //        DateTimeZone moscowZone = DateTimeZone.forID("Europe/Moscow");
@@ -181,18 +167,13 @@ class DateTimeDemo {
 //
 //        System.out.println();
 
-//        LocalDate localDate = new LocalDate(2018, 8, 23);
-//        LocalTime localTime = new LocalTime(10, 0, 0);
-//
-//        System.out.println(localDate.toDateTime(localTime));
-//        System.out.println(localDate.toDateTime(localTime, DateTimeZone.UTC));
-//        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("Europe/Moscow")));
-//        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("Europe/Samara")));
-//        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("America/Chicago")));
+        LocalDate localDate = new LocalDate(2018, 8, 23);
+        LocalTime localTime = new LocalTime(10, 0, 0);
 
-        DateTime from = new DateTime(2018, 8, 20, 0, 0, 0, 0);
-        DateTime to = new DateTime(2018, 8, 20, 1, 0, 0, 0);
-        List<String> strings = hoursAndMinutes(from, to, 15);
-        strings.forEach(System.out::println);
+        System.out.println(localDate.toDateTime(localTime));
+        System.out.println(localDate.toDateTime(localTime, DateTimeZone.UTC));
+        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("Europe/Moscow")));
+        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("Europe/Samara")));
+        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("America/Chicago")));
     }
 }

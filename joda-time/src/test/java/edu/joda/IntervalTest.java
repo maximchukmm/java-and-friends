@@ -28,7 +28,7 @@ public class IntervalTest {
         List<Interval> expected = new ArrayList<>();
         expected.add(minuend);
 
-        List<Interval> actual = IntervalDemo.intervalsSubtraction(minuend, subtrahend);
+        List<Interval> actual = IntervalUtils.intervalsSubtraction(minuend, subtrahend);
 
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.containsAll(actual));
@@ -51,7 +51,7 @@ public class IntervalTest {
             "2018-10-10 11:00:00")
         );
 
-        List<Interval> actual = IntervalDemo.intervalsSubtraction(minuend, subtrahend);
+        List<Interval> actual = IntervalUtils.intervalsSubtraction(minuend, subtrahend);
 
         assertEquals(expected.size(), actual.size());
         assertTrue(actual.containsAll(expected));
@@ -78,7 +78,7 @@ public class IntervalTest {
             "2018-10-10 12:00:00"
         ));
 
-        List<Interval> actual = IntervalDemo.intervalsSubtraction(minuend, subtrahend);
+        List<Interval> actual = IntervalUtils.intervalsSubtraction(minuend, subtrahend);
 
         assertEquals(expected.size(), actual.size());
         assertTrue(actual.containsAll(expected));
@@ -95,7 +95,7 @@ public class IntervalTest {
             "2018-10-10 13:00:00"
         );
 
-        List<Interval> actual = IntervalDemo.intervalsSubtraction(minuend, subtrahend);
+        List<Interval> actual = IntervalUtils.intervalsSubtraction(minuend, subtrahend);
 
         assertTrue(actual.isEmpty());
     }
