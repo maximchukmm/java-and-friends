@@ -1,6 +1,7 @@
 package edu.joda;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.junit.Assert;
@@ -115,6 +116,15 @@ public class LocalDateTest {
             DateTime startOfDayWithMoscowTimeZone = localDate.toDateTimeAtStartOfDay(EUROPE_MOSCOW);
 
             assertFalse(startOfDayWithMoscowTimeZone.isEqual(startOfDayWithUtcTimeZone));
+        }
+
+        @Test
+        public void toDateTime_WhenWithoutExplicitTimeZone_ThenUsingDefaultTimeZone() {
+            DateTime expected = dateTime("2018-08-20 12:00:00", DateTimeZone.getDefault());
+
+            DateTime actual = localDate("2018-08-20").toDateTime(localTime("12:00:00"));
+
+            assertEquals(expected, actual);
         }
     }
 }
