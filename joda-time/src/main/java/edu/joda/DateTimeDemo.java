@@ -166,14 +166,5 @@ class DateTimeDemo {
 //        System.out.println("date samara = " + dateSamara);
 //
 //        System.out.println();
-
-        LocalDate localDate = new LocalDate(2018, 8, 23);
-        LocalTime localTime = new LocalTime(10, 0, 0);
-
-        System.out.println(localDate.toDateTime(localTime));
-        System.out.println(localDate.toDateTime(localTime, DateTimeZone.UTC));
-        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("Europe/Moscow")));
-        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("Europe/Samara")));
-        System.out.println(localDate.toDateTime(localTime, DateTimeZone.forID("America/Chicago")));
     }
 }
