@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -42,12 +41,24 @@ public class ListIteratorTest {
     }
 
     @Test
-    public void test1() {
+    public void add_WhenAddElementBeforeCallNext_ThenAddElementAtTheBeginningOfTheList() {
         ListIterator<Integer> listIterator = list.listIterator();
 
         listIterator.add(777);
 
+        MatcherAssert.assertThat(list, IsCollectionWithSize.hasSize(listSize + 1));
+        MatcherAssert.assertThat(list, Matchers.contains(777, 0, 1, 2, 3, 4));
+    }
 
+    @Test
+    public void add_WhenCallPreviousAfterAddNewElement_ThenReturnThatAddedElement() {
+        ListIterator<Integer> listIterator = list.listIterator();
+
+        listIterator.next();
+        listIterator.add(777);
+        listIterator.previous();
+
+        Assert.assertEquals(list.get(1), listIterator.next());
     }
 
     @Before
