@@ -166,5 +166,14 @@ class DateTimeDemo {
 //        System.out.println("date samara = " + dateSamara);
 //
 //        System.out.println();
+
+
+        DateTime dateTime = new DateTime(2018, 8, 8, 0, 0, UTC);
+        DateTime dateTime1 = dateTime.withZone(EUROPE_MOSCOW);
+        DateTime dateTime2 = dateTime.withZoneRetainFields(EUROPE_MOSCOW);
+
+        System.out.println(dateTime);
+        System.out.println(dateTime1);
+        System.out.println(dateTime2);
     }
 }
