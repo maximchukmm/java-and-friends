@@ -179,6 +179,34 @@ public class SessionInterfaceTest extends HibernateBaseTest {
         });
     }
 
+    @Test
+    public void contains_ExperimentsWithPersistenceContext() {
+        SimpleEntity entityFromDb = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Persistence Context");
+            session.persist(entity);
+
+            assertTrue(session.contains(entity));
+            return entity;
+        });
+
+        doInTransaction(session -> {
+            assertFalse(session.contains(entityFromDb));
+
+            SimpleEntity entity1 = session.find(SimpleEntity.class, entityFromDb.getId());
+
+            assertTrue(session.contains(entity1));
+
+            session.clear();
+
+            assertFalse(session.contains(entity1));
+
+            SimpleEntity entity2 = session.find(SimpleEntity.class, entityFromDb.getId());
+
+            assertFalse(session.contains(entity1));
+            assertTrue(session.contains(entity2));
+        });
+    }
+
     @Test(expected = UnresolvableObjectException.class)
     public void refresh_WithAllowRefreshDetachedEntitySetToTrue_WhenRefreshNewNonExistingInDatabaseEntityWithNonNullId_ThenThrowUnresolvableObjectException() {
         doInTransaction(session -> {
