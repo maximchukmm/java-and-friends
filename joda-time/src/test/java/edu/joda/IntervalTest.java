@@ -253,6 +253,38 @@ public class IntervalTest {
         assertTrue(isIntervalsSortedByStart(intervals));
     }
 
+    @Test
+    public void isEqual_WhenStartAndEndOfIntervalsEqual_ThenReturnTrue() {
+        Interval interval1 = interval("2018-08-20 15:00:00", "2018-08-20 16:00:00");
+        Interval interval2 = interval("2018-08-20 15:00:00", "2018-08-20 16:00:00");
+
+        assertTrue(interval1.isEqual(interval2));
+    }
+
+    @Test
+    public void isEqual_WhenStartOfIntervalsEqualAndEndNotEqual_ThenReturnFalse() {
+        Interval interval1 = interval("2018-08-20 15:00:00", "2018-08-20 16:00:00");
+        Interval interval2 = interval("2018-08-20 15:00:00", "2018-08-20 17:00:00");
+
+        assertFalse(interval1.isEqual(interval2));
+    }
+
+    @Test
+    public void isEqual_WhenStartOfIntervalsNotEqualAndEndEqual_ThenReturnFalse() {
+        Interval interval1 = interval("2018-08-20 14:00:00", "2018-08-20 16:00:00");
+        Interval interval2 = interval("2018-08-20 15:00:00", "2018-08-20 16:00:00");
+
+        assertFalse(interval1.isEqual(interval2));
+    }
+
+    @Test
+    public void isEqual_WhenStartAndEndOfIntervalsNotEqual_ThenReturnFalse() {
+        Interval interval1 = interval("2018-08-20 15:00:00", "2018-08-20 16:00:00");
+        Interval interval2 = interval("2018-08-20 15:20:00", "2018-08-20 15:40:00");
+
+        assertFalse(interval1.isEqual(interval2));
+    }
+
     private boolean isIntervalsSortedByStart(List<Interval> intervals) {
         for (int i = 0; i < intervals.size() - 1; i++) {
             DateTime currentStart = intervals.get(i).getStart();
