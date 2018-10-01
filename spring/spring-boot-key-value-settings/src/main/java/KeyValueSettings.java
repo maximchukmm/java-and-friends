@@ -1,4 +1,22 @@
-public class EnumAndGeneric {
+public class KeyValueSettings {
+    public static void main(String[] args) {
+        String[] values = {"false", "trulyalya", "123", "NaN"};
+        for (String value : values) {
+            if (Key.KEY1.validate(value)) {
+                System.out.println("key1:value = " + Key.KEY1.fromString(value));
+            } else {
+                System.out.println("Invalid value=" + value + " for key1");
+            }
+
+            if (Key.KEY2.validate(value)) {
+                System.out.println("key2:value = " + Key.KEY2.fromString(value));
+            } else {
+                System.out.println("Invalid value=" + value + " for key2");
+            }
+
+            System.out.println();
+        }
+    }
 }
 
 enum Key implements ValueMapper, ValueValidator {
