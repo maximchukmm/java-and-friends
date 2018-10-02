@@ -23,6 +23,10 @@ abstract public class JodaUtils {
         return LOCAL_DATE_FORMATTER.parseLocalDate(localDate);
     }
 
+    /**
+     * @param dateTime строковое представление даты со временем. Формат yyyy-MM-dd HH:mm:ss
+     * @return момент времени с часовой зоной UTC
+     */
     public static DateTime dateTime(String dateTime) {
         return dateTime(dateTime, DateTimeZone.UTC);
     }
