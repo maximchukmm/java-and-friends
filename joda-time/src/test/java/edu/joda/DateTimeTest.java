@@ -168,12 +168,28 @@ public class DateTimeTest {
     }
 
     @Test
+    public void withZone_WhenGenNewInstanceWithNewTimeZone_ThenGetDifferentHoursOfDay() {
+        DateTime dateTimeInUTC = dateTime("2018-07-30 20:00:00");
+        DateTime dateTimeInMoscow = dateTimeInUTC.withZone(EUROPE_MOSCOW);
+
+        assertNotEquals(dateTimeInUTC.getHourOfDay(), dateTimeInMoscow.getHourOfDay());
+    }
+
+    @Test
     public void withZoneRetainFields_WhenGetNewInstanceWithNewTimeZone_ThenGetDifferentMomentOfTime() {
         DateTime dateTimeInUTC = dateTime("2018-07-30 20:00:00");
         DateTime dateTimeInMoscow = dateTimeInUTC.withZoneRetainFields(EUROPE_MOSCOW);
 
         assertFalse(dateTimeInUTC.isEqual(dateTimeInMoscow));
         assertNotEquals(dateTimeInUTC.getMillis(), dateTimeInMoscow.getMillis());
+    }
+
+    @Test
+    public void withZoneRetainFields_WhenGetNewInstanceWithNewTimeZone_ThenGetSameHoursOfDay() {
+        DateTime dateTimeInUTC = dateTime("2018-07-30 20:00:00");
+        DateTime dateTimeInMoscow = dateTimeInUTC.withZoneRetainFields(EUROPE_MOSCOW);
+
+        assertEquals(dateTimeInUTC.getHourOfDay(), dateTimeInMoscow.getHourOfDay());
     }
 
     @Test
