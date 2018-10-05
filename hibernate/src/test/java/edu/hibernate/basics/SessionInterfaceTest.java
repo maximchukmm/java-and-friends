@@ -179,6 +179,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
         });
     }
 
+    //todo add same test but with select by title
     @Test
     public void contains_ExperimentsWithPersistenceContext() {
         SimpleEntity entityFromDb = doInTransaction(session -> {
