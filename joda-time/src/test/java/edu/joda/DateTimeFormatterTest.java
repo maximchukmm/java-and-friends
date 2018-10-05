@@ -41,4 +41,11 @@ public class DateTimeFormatterTest {
 
         assertEquals("14.08", actualFormattedDate);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void parseDateTime_WhenSpareCharacters_ThenThrowIllegalArgumentException() {
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+
+        formatter.parseDateTime("2018-08-15 10:00:00.0");
+    }
 }
