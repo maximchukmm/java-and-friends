@@ -33,27 +33,30 @@ public class BookControllerTest {
 
     @Test
     public void create_WhenEmptyBody() throws Exception {
-        mvc.perform(post("/api/books").content("{  }").contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(post("/api/books").content("{  }")
+            .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isBadRequest());
     }
 
     @Test
     public void create_WhenEmptyAuthor() throws Exception {
-        mvc.perform(post("/api/books").content("{ \"title\": \"foo\", \"author\": \"\" }").contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(post("/api/books")
+            .content("{ \"title\": \"foo\", \"author\": \"\" }")
+            .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isBadRequest());
     }
 
     @Test
     public void create_WhenBlankAuthor() throws Exception {
-        mvc.perform(post("/api/books").content("{ \"title\": \"foo\", \"author\": \"  \" }").contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(post("/api/books")
+            .content("{ \"title\": \"foo\", \"author\": \"  \" }")
+            .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isBadRequest());
     }
 
     @Test
     public void findAll_WhenFindAllBooks_ThenOk() throws Exception {
-        mvc.perform(
-            get("/api/books")
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(get("/api/books").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
     }
 
