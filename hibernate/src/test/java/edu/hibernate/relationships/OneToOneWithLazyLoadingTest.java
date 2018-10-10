@@ -43,6 +43,13 @@ public class OneToOneWithLazyLoadingTest extends HibernateBaseTest {
         });
     }
 
+    @Test
+    public void whenSelectChildInOneToOneRelationshipFetchTypeIsLazy_ThenExecuteOneSelect() {
+        doInTransaction(session -> {
+            Staff staff = session.find(Staff.class, 1L);
+        });
+    }
+
     @Entity(name = "User")
     @Table(name = "users")
     @Getter
