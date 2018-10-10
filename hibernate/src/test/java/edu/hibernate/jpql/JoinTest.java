@@ -99,7 +99,7 @@ public class JoinTest extends HibernateBaseTest {
         private String comment;
 
         @JoinColumn(name = "post_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_post_id"))
-        @ManyToOne(fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.EAGER)
         private Post post;
     }
 }
