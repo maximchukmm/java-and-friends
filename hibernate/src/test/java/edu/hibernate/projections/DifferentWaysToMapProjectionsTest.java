@@ -86,11 +86,7 @@ public class DifferentWaysToMapProjectionsTest extends HibernateBaseTest {
         doInTransaction(session -> {
             List<PostDTO> actualPostDTOs = session
                 .createQuery(
-                    "select new " +
-                        "edu.hibernate.projections.PostDTO(" +
-                        "p.id, " +
-                        "p.title " +
-                        ") " +
+                    "select new edu.hibernate.projections.PostDTO(p.id, p.title) " +
                         "from Post p ", PostDTO.class
                 )
                 .getResultList();
