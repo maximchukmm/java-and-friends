@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.spel;
+package spring.spel;
 
 class TemplateDemo {
     private static final int MINUTES_IN_HOUR = 60;

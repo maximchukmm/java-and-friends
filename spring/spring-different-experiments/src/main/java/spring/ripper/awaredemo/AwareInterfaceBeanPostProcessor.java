@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.ripper.awaredemo;
+package spring.ripper.awaredemo;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.Aware;

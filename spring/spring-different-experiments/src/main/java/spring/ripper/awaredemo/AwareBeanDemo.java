@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.ripper.awaredemo;
+package spring.ripper.awaredemo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.taskexecutingandscheduling;
+package spring.taskexecutingandscheduling;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @EnableScheduling
 @Configuration
-@ComponentScan(basePackages = {"edu.frameworks.org.spring.taskexecutingandscheduling"})
+@ComponentScan(basePackages = {"spring.taskexecutingandscheduling"})
 public class ApplicationConfiguration {
 
     @Bean

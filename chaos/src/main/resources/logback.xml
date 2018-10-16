@@ -9,10 +9,6 @@
         </layout>
     </appender>
 
-    <logger name="edu.frameworks.org.spring" level="info" additivity="false">
-        <appender-ref ref="STDOUT"/>
-    </logger>
-
     <root level="error">
         <appender-ref ref="STDOUT"/>
     </root>

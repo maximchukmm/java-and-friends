@@ -1,6 +1,6 @@
-package edu.frameworks.org.spring.ripper.bean;
+package spring.ripper.bean;
 
-import edu.frameworks.org.spring.ripper.Quoter;
+import spring.ripper.Quoter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

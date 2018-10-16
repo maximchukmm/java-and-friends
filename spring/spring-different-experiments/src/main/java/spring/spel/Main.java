@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.spel;
+package spring.spel;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.expression.ExpressionParser;

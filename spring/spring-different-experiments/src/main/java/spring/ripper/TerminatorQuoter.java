@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.ripper;
+package spring.ripper;
 
 public class TerminatorQuoter implements Quoter {
     private String message;

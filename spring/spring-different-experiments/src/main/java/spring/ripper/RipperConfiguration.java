@@ -1,13 +1,13 @@
-package edu.frameworks.org.spring.ripper;
+package spring.ripper;
 
-import edu.frameworks.org.spring.ripper.awaredemo.AwareInterfaceBeanPostProcessor;
+import spring.ripper.awaredemo.AwareInterfaceBeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("edu.frameworks.org.spring.ripper")
+@ComponentScan("spring.ripper")
 public class RipperConfiguration {
     @Bean(name = "springQuoter")
     Quoter springQuoter() {

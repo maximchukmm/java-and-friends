@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.ripper;
+package spring.ripper;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.taskexecutingandscheduling;
+package spring.taskexecutingandscheduling;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.taskexecutingandscheduling.contextdemo;
+package spring.taskexecutingandscheduling.contextdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

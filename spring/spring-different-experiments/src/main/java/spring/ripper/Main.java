@@ -1,6 +1,6 @@
-package edu.frameworks.org.spring.ripper;
+package spring.ripper;
 
-import edu.frameworks.org.spring.ripper.bean.BookOfQuoters;
+import spring.ripper.bean.BookOfQuoters;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

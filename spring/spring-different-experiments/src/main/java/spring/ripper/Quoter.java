@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.ripper;
+package spring.ripper;
 
 public interface Quoter {
     void sayQuote();

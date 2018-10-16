@@ -1,6 +1,6 @@
-package edu.frameworks.org.spring.taskexecutingandscheduling;
+package spring.taskexecutingandscheduling;
 
-import edu.frameworks.org.spring.taskexecutingandscheduling.contextdemo.ApplicationContextUtils;
+import spring.taskexecutingandscheduling.contextdemo.ApplicationContextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

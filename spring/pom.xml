@@ -17,6 +17,7 @@
         <module>spring-boot-first-look</module>
         <module>spring-boot-and-postgres</module>
         <module>spring-boot-key-value-settings</module>
+        <module>spring-different-experiments</module>
     </modules>
 
 </project>

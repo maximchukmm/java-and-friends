@@ -1,4 +1,4 @@
-package edu.frameworks.org.spring.ripper;
+package spring.ripper;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
