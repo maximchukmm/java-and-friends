@@ -47,6 +47,21 @@ public class JoinTest extends HibernateBaseTest {
         });
     }
 
+    @Test
+    public void whenWithJoinWithoutFetch_ThenExecuteAdditionalSelect() {
+        doInTransaction(session -> {
+            List<PostComments> comments = session.createQuery(
+                "select pc " +
+                    "from PostComments pc " +
+                    "join pc.post " +
+                    "where pc.comment = :comment", PostComments.class)
+                .setParameter("comment", "it depends")
+                .getResultList();
+
+            comments.forEach(System.out::println);
+        });
+    }
+
     @Before
     public void prepareData() {
         doInTransaction(session -> {
