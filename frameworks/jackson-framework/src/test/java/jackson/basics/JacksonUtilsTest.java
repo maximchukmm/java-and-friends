@@ -1,8 +1,8 @@
-package edu.frameworks.com.jackson.basics;
+package jackson.basics;
 
 import org.junit.Test;
 
-import static edu.frameworks.com.jackson.util.JacksonUtils.toJson;
+import static jackson.util.JacksonUtils.toJson;
 import static org.junit.Assert.assertEquals;
 
 public class JacksonUtilsTest {

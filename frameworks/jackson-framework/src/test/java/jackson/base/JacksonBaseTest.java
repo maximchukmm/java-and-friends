@@ -1,4 +1,4 @@
-package edu.frameworks.com.jackson.base;
+package jackson.base;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;

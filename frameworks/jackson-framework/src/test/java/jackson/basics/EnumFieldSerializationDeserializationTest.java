@@ -1,16 +1,16 @@
-package edu.frameworks.com.jackson.basics;
+package jackson.basics;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import edu.frameworks.com.jackson.base.JacksonBaseTest;
+import jackson.base.JacksonBaseTest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static edu.frameworks.com.jackson.basics.EnumFieldSerializationDeserializationTest.Word.Letter.A;
-import static edu.frameworks.com.jackson.basics.EnumFieldSerializationDeserializationTest.Word.Letter.N;
-import static edu.frameworks.com.jackson.util.JacksonUtils.toJson;
+import static jackson.basics.EnumFieldSerializationDeserializationTest.Word.Letter.A;
+import static jackson.basics.EnumFieldSerializationDeserializationTest.Word.Letter.N;
+import static jackson.util.JacksonUtils.toJson;
 
 public class EnumFieldSerializationDeserializationTest extends JacksonBaseTest {
 

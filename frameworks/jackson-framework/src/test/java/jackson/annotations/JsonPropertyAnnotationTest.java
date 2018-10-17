@@ -1,14 +1,14 @@
-package edu.frameworks.com.jackson.annotations;
+package jackson.annotations;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import edu.frameworks.com.jackson.base.JacksonBaseTest;
+import jackson.base.JacksonBaseTest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.Test;
 
-import static edu.frameworks.com.jackson.util.JacksonUtils.toJson;
+import static jackson.util.JacksonUtils.toJson;
 import static org.junit.Assert.assertEquals;
 
 public class JsonPropertyAnnotationTest extends JacksonBaseTest {

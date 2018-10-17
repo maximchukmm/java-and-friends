@@ -1,14 +1,14 @@
-package edu.frameworks.com.jackson.basics;
+package jackson.basics;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import edu.frameworks.com.jackson.base.JacksonBaseTest;
+import jackson.base.JacksonBaseTest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.Test;
 
-import static edu.frameworks.com.jackson.util.JacksonUtils.toJson;
+import static jackson.util.JacksonUtils.toJson;
 
 public class DifferentConfigFeaturesTest extends JacksonBaseTest {
 
