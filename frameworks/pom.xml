@@ -15,6 +15,7 @@
 
     <modules>
         <module>jackson-framework</module>
+        <module>lombok</module>
     </modules>
 
 
