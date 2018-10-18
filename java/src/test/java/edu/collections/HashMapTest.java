@@ -1,4 +1,4 @@
-package collections;
+package edu.collections;
 
 import org.junit.Test;
 
@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class HashMapTest {
@@ -27,12 +28,13 @@ public class HashMapTest {
         int key = 1;
         String firstValue = "one";
         map.put(key, firstValue);
-        String lastValue = "two";
-        map.put(key, lastValue);
+        String secondValue = "two";
+        map.put(key, secondValue);
 
         Set<Map.Entry<Integer, String>> entries = map.entrySet();
 
-        assertEquals(key, entries.size());
-        assertTrue(map.containsValue(lastValue));
+        assertEquals(1, entries.size());
+        assertFalse(map.containsValue(firstValue));
+        assertTrue(map.containsValue(secondValue));
     }
 }

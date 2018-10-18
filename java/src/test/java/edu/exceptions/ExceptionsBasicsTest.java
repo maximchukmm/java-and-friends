@@ -1,4 +1,4 @@
-package exceptions;
+package edu.exceptions;
 
 import org.junit.Test;
 import org.mockito.internal.verification.Times;
