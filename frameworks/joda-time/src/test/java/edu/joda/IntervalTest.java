@@ -250,7 +250,7 @@ public class IntervalTest {
 
         intervals.sort(Comparator.comparing(Interval::getStart));
 
-        assertTrue(isIntervalsSortedByStart(intervals));
+        assertTrue(IntervalUtils.isIntervalsSortedByStart(intervals));
     }
 
     @Test
@@ -285,13 +285,19 @@ public class IntervalTest {
         assertFalse(interval1.isEqual(interval2));
     }
 
-    private boolean isIntervalsSortedByStart(List<Interval> intervals) {
-        for (int i = 0; i < intervals.size() - 1; i++) {
-            DateTime currentStart = intervals.get(i).getStart();
-            DateTime nextStart = intervals.get(i + 1).getStart();
-            if (currentStart.compareTo(nextStart) >= 1)
-                return false;
-        }
-        return true;
+    @Test
+    public void getDurationInSeconds_WhenDurationOfIntervalInSecondsDoesNotSuitToInteger_ThenDoNotThrowException() {
+        Interval interval = interval("1970-01-01 00:00:00", "2070-01-01 00:00:00");
+
+        IntervalUtils.getDurationInSeconds(interval);
+    }
+
+    @Test
+    public void getDurationInSeconds_WhenDurationOfIntervalInSecondsDoesNotSuitToInteger_ThenReturnSecondsGreaterMaxValueOfInteger() {
+        Interval interval = interval("1970-01-01 00:00:00", "2070-01-01 00:00:00");
+
+        long actualSeconds = IntervalUtils.getDurationInSeconds(interval);
+
+        assertTrue(actualSeconds > Integer.MAX_VALUE);
     }
 }

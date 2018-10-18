@@ -1,5 +1,6 @@
 package edu.joda;
 
+import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
 import java.util.ArrayList;
@@ -27,5 +28,58 @@ public abstract class IntervalUtils {
             subtraction.add(new Interval(i1.getStart(), i2.getStart()));
 
         return subtraction;
+    }
+
+    //todo test isIntervalsSortedByStart
+    public static boolean isIntervalsSortedByStart(List<Interval> intervals) {
+        for (int i = 0; i < intervals.size() - 1; i++) {
+            DateTime currentStart = intervals.get(i).getStart();
+            DateTime nextStart = intervals.get(i + 1).getStart();
+            if (currentStart.compareTo(nextStart) >= 1)
+                return false;
+        }
+        return true;
+    }
+
+    public static long getDurationInSeconds(Interval interval) {
+        List<Interval> intervals = splitIntervalIfNecessary(interval);
+
+        return intervals
+            .stream()
+            .mapToLong(i -> i.toDuration().getStandardSeconds())
+            .sum();
+    }
+
+    //todo test splitIntervalIfNecessary
+    public static List<Interval> splitIntervalIfNecessary(Interval interval) {
+        long daysBetween = interval.toDuration().getStandardDays();
+
+        // если интервал длительностью меньше 30 лет, тогда интервал не разрезаем,
+        // т.к. 30 лет в секундах поместятся в тип int
+        // и метод Seconds.secondsBetween(start, end).getSeconds() не бросит исключение
+        if (daysBetween < 30 * 366) {
+            return Collections.singletonList(interval);
+        }
+
+        List<Interval> intervals = new ArrayList<>();
+        DateTime start = interval.getStart();
+        DateTime end = interval.getEnd();
+
+        while (start.isBefore(end)) {
+            // разрезаем интервал на части по 15 лет каждая
+            DateTime newEnd = start.plusDays(15 * 366);
+
+            // если не вышли за правую границу интервала, добавляем новую часть
+            if (newEnd.isBefore(end) || newEnd.isEqual(end)) {
+                intervals.add(new Interval(start, newEnd));
+            } else {
+                intervals.add(new Interval(start, end));
+                break;
+            }
+
+            start = newEnd;
+        }
+
+        return intervals;
     }
 }
