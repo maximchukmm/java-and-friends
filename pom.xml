@@ -14,7 +14,6 @@
         <module>chaos</module>
         <module>hibernate</module>
         <module>java</module>
-        <module>joda-time</module>
         <module>spring</module>
         <module>frameworks</module>
     </modules>
