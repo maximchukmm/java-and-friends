@@ -57,4 +57,18 @@ public class StreamBasicsTest {
         assertEquals(expected.size(), actual.size());
         assertTrue(expected.containsAll(actual));
     }
+
+    @Test
+    public void givenEmptyListOfIntegers_WhenFindSumOfList_ThenReturnZero() {
+        List<Integer> integers = new ArrayList<>();
+
+        int actualSum = integers
+            .stream()
+            .mapToInt(i -> i)
+            .sum();
+
+        int expectedSum = 0;
+
+        assertEquals(expectedSum, actualSum);
+    }
 }
