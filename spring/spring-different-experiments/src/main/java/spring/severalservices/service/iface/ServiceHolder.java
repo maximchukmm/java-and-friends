@@ -1,4 +1,4 @@
-package spring.severalservices.service;
+package spring.severalservices.service.iface;
 
 import spring.severalservices.service.iface.MyService;
 import spring.severalservices.service.impl.ServiceType;

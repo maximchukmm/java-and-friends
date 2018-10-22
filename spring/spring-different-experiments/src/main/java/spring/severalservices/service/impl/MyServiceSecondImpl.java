@@ -1,6 +1,7 @@
-package spring.severalservices.service.iface;
+package spring.severalservices.service.impl;
 
 import org.springframework.stereotype.Component;
+import spring.severalservices.service.iface.MyService;
 import spring.severalservices.service.impl.ServiceType;
 
 import static spring.severalservices.service.impl.ServiceType.SECOND;

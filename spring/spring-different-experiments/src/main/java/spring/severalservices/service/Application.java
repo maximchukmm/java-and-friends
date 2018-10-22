@@ -3,6 +3,7 @@ package spring.severalservices.service;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import spring.severalservices.service.iface.MyService;
+import spring.severalservices.service.iface.ServiceHolder;
 import spring.severalservices.service.impl.ServiceType;
 
 import java.util.Map;

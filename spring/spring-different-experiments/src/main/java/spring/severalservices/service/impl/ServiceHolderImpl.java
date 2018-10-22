@@ -2,13 +2,12 @@ package spring.severalservices.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import spring.severalservices.service.ServiceHolder;
+import spring.severalservices.service.iface.ServiceHolder;
 import spring.severalservices.service.iface.MyService;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 @Component
 public class ServiceHolderImpl implements ServiceHolder {
