@@ -17,8 +17,7 @@ public class ServiceHolderImpl implements ServiceHolder {
     public ServiceHolderImpl(Collection<MyService> myServices) {
         ServiceType[] serviceTypes = ServiceType.values();
 
-        for (int i = 0; i < serviceTypes.length; i++) {
-            ServiceType serviceType = serviceTypes[i];
+        for (ServiceType serviceType : serviceTypes) {
             MyService myService = findByType(myServices, serviceType);
             myServiceMap.put(serviceType, myService);
         }

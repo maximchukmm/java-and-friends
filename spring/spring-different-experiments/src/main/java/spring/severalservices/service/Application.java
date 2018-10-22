@@ -18,9 +18,8 @@ public class Application {
 
         ServiceType[] serviceTypes = ServiceType.values();
 
-        for (int i = 0; i < serviceTypes.length; i++) {
-            MyService myService = serviceHolder.getByType(serviceTypes[i]);
-
+        for (ServiceType serviceType : serviceTypes) {
+            MyService myService = serviceHolder.getByType(serviceType);
             myService.whoAmI();
         }
 
