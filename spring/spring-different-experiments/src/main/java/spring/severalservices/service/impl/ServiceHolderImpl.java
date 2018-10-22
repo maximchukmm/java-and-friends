@@ -16,6 +16,7 @@ public class ServiceHolderImpl implements ServiceHolder {
     @Autowired
     public ServiceHolderImpl(Collection<MyService> myServices) {
         ServiceType[] serviceTypes = ServiceType.values();
+
         for (int i = 0; i < serviceTypes.length; i++) {
             ServiceType serviceType = serviceTypes[i];
             MyService myService = findByType(myServices, serviceType);

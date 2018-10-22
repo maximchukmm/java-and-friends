@@ -12,6 +12,8 @@ public class Application {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
 
+        System.out.println();
+
         ServiceHolder serviceHolder = context.getBean(ServiceHolder.class);
 
         ServiceType[] serviceTypes = ServiceType.values();
@@ -21,6 +23,8 @@ public class Application {
 
             myService.whoAmI();
         }
+
+        System.out.println();
 
         Map<Integer, String> mySuperMap = (Map<Integer, String>) context.getBean("mySuperMap");
         mySuperMap.forEach((i, s) -> System.out.println("(" + i + ", " + s + ")"));
