@@ -5,6 +5,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import spring.severalservices.service.iface.MyService;
 import spring.severalservices.service.impl.ServiceType;
 
+import java.util.Map;
+
 public class Application {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
@@ -18,5 +20,8 @@ public class Application {
 
             myService.whoAmI();
         }
+
+        Map<Integer, String> mySuperMap = (Map<Integer, String>) context.getBean("mySuperMap");
+        mySuperMap.forEach((i, s) -> System.out.println("(" + i + ", " + s + ")"));
     }
 }
