@@ -224,4 +224,13 @@ public class DateTimeTest {
         assertTrue(expected.isEqual(actual));
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void getWeekOfWeekYear_WhenBeginningOfWeekAndSameMomentOfTimeWithDifferentZones_ThenReturnDifferentNumbersOfWeek() {
+        DateTime utc = dateTime("2018-10-21 21:00:00");
+        DateTime moscow = dateTime("2018-10-22 00:00:00", EUROPE_MOSCOW);
+
+        assertTrue(utc.isEqual(moscow));
+        assertTrue(utc.getWeekOfWeekyear() != moscow.getWeekOfWeekyear());
+    }
 }
