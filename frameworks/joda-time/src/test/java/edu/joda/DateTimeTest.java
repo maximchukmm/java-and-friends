@@ -71,7 +71,7 @@ public class DateTimeTest {
         DateTime utc1 = dateTime("2018-12-20 15:30:00", UTC);
         DateTime utc2 = dateTime("2018-12-20 15:30:00", UTC);
 
-        assertTrue(utc1.equals(utc2));
+        assertEquals(utc1, utc2);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class DateTimeTest {
         DateTime utc = dateTime("2018-12-20 12:30:00", UTC);
         DateTime moscow = dateTime("2018-12-20 15:30:00", EUROPE_MOSCOW);
 
-        assertFalse(utc.equals(moscow));
+        assertNotEquals(utc, moscow);
     }
 
     @Test
