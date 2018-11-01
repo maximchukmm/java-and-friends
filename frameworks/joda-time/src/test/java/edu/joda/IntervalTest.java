@@ -162,6 +162,38 @@ public class IntervalTest {
     }
 
     @Test
+    public void overlaps_WhenIntervalsEquals_ThenReturnTrue() {
+        Interval i1 = interval("2018-10-01 10:00:00", "2018-10-01 12:00:00");
+        Interval i2 = interval("2018-10-01 10:00:00", "2018-10-01 12:00:00");
+
+        assertTrue(i1.overlaps(i2));
+    }
+
+    @Test
+    public void overlaps_WhenStartAndEndOfOneIntervalIsEqualToStartOfOtherInterval_ThenReturnFalse() {
+        Interval i1 = interval("2018-10-01 10:00:00", "2018-10-01 12:00:00");
+        Interval i2 = interval("2018-10-01 10:00:00", "2018-10-01 10:00:00");
+
+        assertFalse(i1.overlaps(i2));
+    }
+
+    @Test
+    public void overlaps_WhenStartAndEndOfOneIntervalIsEqualToEndOfOtherInterval_ThenReturnFalse() {
+        Interval i1 = interval("2018-10-01 10:00:00", "2018-10-01 12:00:00");
+        Interval i2 = interval("2018-10-01 12:00:00", "2018-10-01 12:00:00");
+
+        assertFalse(i1.overlaps(i2));
+    }
+
+    @Test
+    public void overlaps_WhenStartAndEndOfOneIntervalIsEqualToTheMiddleOfOtherInterval_ThenReturnTrue() {
+        Interval i1 = interval("2018-10-01 10:00:00", "2018-10-01 12:00:00");
+        Interval i2 = interval("2018-10-01 11:00:00", "2018-10-01 11:00:00");
+
+        assertTrue(i1.overlaps(i2));
+    }
+
+    @Test
     public void whenCreateIntervalWithEqualStartAndEnd_ThenDoesntThrowException() {
         interval(
             "2018-10-10 10:00:00",
