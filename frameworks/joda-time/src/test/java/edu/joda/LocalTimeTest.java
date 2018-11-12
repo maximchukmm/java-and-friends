@@ -7,7 +7,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-//todo test - create LocalTime instance with DateTimeZone
+import static edu.joda.util.JodaUtils.EUROPE_MOSCOW;
+import static edu.joda.util.JodaUtils.dateTime;
+
+
 public class LocalTimeTest {
     @Test
     public void isBefore_WhenSearchForMinimumLocalTimeInListWithMidnight_ThenReturnMidnight() {
@@ -27,5 +30,13 @@ public class LocalTimeTest {
         }
 
         Assert.assertEquals(expectedMinimumLocalTime, actualMinimumLocalTime);
+    }
+
+    @Test
+    public void newLocalTime_WhenCreateFromMillisAndZone_ThenReturnLocalTimeShiftedToZone() {
+        LocalTime actualLocalTime = new LocalTime(dateTime("2018-09-15 10:00:00"), EUROPE_MOSCOW);
+        LocalTime expectedLocalTime = new LocalTime(13, 0, 0);
+
+        Assert.assertEquals(expectedLocalTime, actualLocalTime);
     }
 }
