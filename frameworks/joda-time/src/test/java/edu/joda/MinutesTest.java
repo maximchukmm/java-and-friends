@@ -68,25 +68,12 @@ public class MinutesTest {
         assertEquals(expectedMinutesBetween, actualMinutesBetween);
     }
 
-    //todo name
     @Test
-    public void test5() {
+    public void minutesBetween_IsEqualToDifferenceBetweenMillisOfEndAndStartLocalTimes() {
         LocalTime start = localTime("23:00:00");
         LocalTime end = localTime("01:00:00");
 
-        int expectedMinutesBetween = 120;
-        int actualMinutesBetween = Minutes.minutesBetween(start, end).getMinutes();
-
-        assertEquals(expectedMinutesBetween, actualMinutesBetween);
-    }
-
-    //todo name
-    @Test
-    public void test6() {
-        LocalTime start = localTime("01:00:00");
-        LocalTime end = localTime("23:00:00");
-
-        int expectedMinutesBetween = 120;
+        int expectedMinutesBetween = (end.getMillisOfDay() - start.getMillisOfDay()) / (1000 * 60);
         int actualMinutesBetween = Minutes.minutesBetween(start, end).getMinutes();
 
         assertEquals(expectedMinutesBetween, actualMinutesBetween);
