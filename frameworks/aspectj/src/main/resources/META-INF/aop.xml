@@ -1,0 +1,8 @@
+<aspectj>
+    <aspects>
+        <aspect name="aspectj.experiments.firstlook.aspect.AdditionalInfoAboutMethodAspect"/>
+        <weaver options="-verbose -showWeaveInfo">
+            <include within="aspectj.experiments.firstlook.service.*"/>
+        </weaver>
+    </aspects>
+</aspectj>

@@ -17,6 +17,7 @@
         <module>jackson-framework</module>
         <module>lombok</module>
         <module>joda-time</module>
+        <module>aspectj</module>
     </modules>
 
 
