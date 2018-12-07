@@ -8,8 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class StreamBasicsTest {
     @Test
@@ -70,5 +69,21 @@ public class StreamBasicsTest {
         int expectedSum = 0;
 
         assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void givenListOfIntegers_WhenPredicateForAnyMatchOnlyForSingleElementReturnTrue_ThenReturnTrue() {
+        List<Integer> integers = new ArrayList<>();
+        for (int i = 0; i < 10; i++) integers.add(i);
+
+        assertTrue(integers.stream().anyMatch(i -> i == 9));
+    }
+
+    @Test
+    public void givenListOfIntegers_WhenPredicateForAnyMatchAlwaysReturnFalse_ThenReturnFalse() {
+        List<Integer> integers = new ArrayList<>();
+        for (int i = 0; i < 10; i++) integers.add(i);
+
+        assertFalse(integers.stream().anyMatch(i -> i >= 10));
     }
 }
