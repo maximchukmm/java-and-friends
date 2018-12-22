@@ -24,7 +24,7 @@ public class ListIteratorTest {
         }
 
         MatcherAssert.assertThat(list, IsCollectionWithSize.hasSize(listSize + 1));
-        MatcherAssert.assertThat(list, Matchers.contains(1, 2, 3, 777, 4));
+        MatcherAssert.assertThat(list, Matchers.contains(0, 1, 2, 3, 777, 4));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class ListIteratorTest {
         }
 
         MatcherAssert.assertThat(list, IsCollectionWithSize.hasSize(listSize - 1));
-        MatcherAssert.assertThat(list, Matchers.contains(1, 2, 4));
+        MatcherAssert.assertThat(list, Matchers.contains(0, 1, 2, 4));
         Assert.assertTrue(list.get(3).equals(4));
     }
 
