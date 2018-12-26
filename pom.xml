@@ -12,10 +12,11 @@
     <modules>
         <module>books</module>
         <module>chaos</module>
+        <module>courses</module>
+        <module>frameworks</module>
         <module>hibernate</module>
         <module>java</module>
         <module>spring</module>
-        <module>frameworks</module>
     </modules>
 
 </project>
