@@ -21,7 +21,7 @@ package net.projecteuler.problem01;
 * (5*k5 * (k5 + 1) + 3*k3 * (k3 + 1) - 15*k15 * (k15 + 1))/2
 * */
 
-
+//todo check solution via unit-tests
 public class Problem01Solution01 {
     public static void main(String[] args) {
         System.out.println(solve(1000));

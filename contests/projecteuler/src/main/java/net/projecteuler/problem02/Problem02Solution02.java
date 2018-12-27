@@ -13,7 +13,7 @@ package net.projecteuler.problem02;
  * By starting with 1 and 1, every third number
  * of Fibonacci sequence will be even
  */
-
+//todo check solution via unit-tests
 public class Problem02Solution02 {
     public static void main(String[] args) {
         System.out.println(Solution02.solve());

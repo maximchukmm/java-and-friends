@@ -9,7 +9,7 @@ package net.projecteuler.problem04;
 /**
  * Solution:
  */
-
+//todo check solution via unit-tests
 public class Problem04Solution01 {
     public static void main(String[] args) {
 

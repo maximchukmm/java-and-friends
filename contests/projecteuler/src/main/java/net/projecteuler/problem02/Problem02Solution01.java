@@ -13,7 +13,7 @@ package net.projecteuler.problem02;
  * check every calculated Fibonacci number on even
  */
 
-
+//todo check solution via unit-tests
 public class Problem02Solution01 {
     public static void main(String[] args) {
         System.out.println(Solution01.solve());

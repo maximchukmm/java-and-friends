@@ -11,7 +11,7 @@ import static net.projecteuler.PrimeFactorsOfNumber.printPrimeFactorsOfNumber;
  * Solution:
  * Almost brute force with some improvements.
  */
-
+//todo check solution via unit-tests
 public class Problem03Solution01 {
     public static void main(String[] args) {
         printPrimeFactorsOfNumber(600851475143L);
