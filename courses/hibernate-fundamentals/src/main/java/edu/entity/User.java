@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 @Entity(name = "User")
@@ -57,4 +58,7 @@ public class User {
 
     @Column(name = "CREATED_BY", updatable = false)
     private String createdBy;
+
+    @Transient
+    private boolean valid;
 }
