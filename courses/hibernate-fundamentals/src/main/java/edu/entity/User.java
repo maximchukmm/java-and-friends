@@ -24,10 +24,10 @@ public class User {
     @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "LAST_NAME ")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "BIRTH_DATE")
+    @Column(name = "BIRTH_DATE", nullable = false)
     private LocalDateTime birthDate;
 
     @Column(name = "EMAIL_ADDRESS")
