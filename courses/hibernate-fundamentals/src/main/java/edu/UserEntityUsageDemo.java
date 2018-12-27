@@ -5,7 +5,7 @@ import org.hibernate.Session;
 
 import java.time.LocalDateTime;
 
-public class Application {
+public class UserEntityUsageDemo {
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
