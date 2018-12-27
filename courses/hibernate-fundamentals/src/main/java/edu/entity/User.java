@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
@@ -17,7 +16,21 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+//    @SequenceGenerator(name = "user_seq", sequenceName = "USER_ID_SEQ")
+
+//    @GeneratedValue(strategy = GenerationType.TABLE, generator = "user_table_generator")
+//    @TableGenerator(
+//        name = "user_table_generator",
+//        table = "IFINANCES_KEYS",
+//        pkColumnName = "PK_NAME",
+//        valueColumnName = "PK_VALUE")
+
+    @GeneratedValue
+
     @Column(name = "USER_ID")
     private Long userId;
 
