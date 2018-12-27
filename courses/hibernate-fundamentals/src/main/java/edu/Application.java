@@ -22,6 +22,14 @@ public class Application {
 
         session.save(user);
         session.getTransaction().commit();
+
+        session.beginTransaction();
+
+        User userFromDb = session.get(User.class, user.getUserId());
+        user.setFirstName("John");
+        session.save(userFromDb);
+
+        session.getTransaction().commit();
         session.close();
     }
 }
