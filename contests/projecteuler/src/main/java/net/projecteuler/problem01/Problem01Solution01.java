@@ -21,6 +21,8 @@ package net.projecteuler.problem01;
  * (5*k5 * (k5 + 1) + 3*k3 * (k3 + 1) - 15*k15 * (k15 + 1))/2
  * */
 
+import static net.projecteuler.EulerUtils.calculateArithmeticSum;
+
 public class Problem01Solution01 {
 
     public static long solve(long n) {
@@ -30,9 +32,5 @@ public class Problem01Solution01 {
         return calculateArithmeticSum(3, 3 * k3, k3)
             + calculateArithmeticSum(5, 5 * k5, k5)
             - calculateArithmeticSum(15, 15 * k15, k15);
-    }
-
-    private static long calculateArithmeticSum(long a1, long an, long n) {
-        return ((a1 + an) * n) / 2;
     }
 }

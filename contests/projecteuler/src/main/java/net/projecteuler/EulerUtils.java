@@ -1,6 +1,10 @@
 package net.projecteuler;
 
-public class PrimeFactorsOfNumber {
+public abstract class EulerUtils {
+    private EulerUtils() {
+        throw new IllegalArgumentException("Cannot create instance of util class.");
+    }
+
     public static void printPrimeFactorsOfNumber(long number) {
         System.out.print(number + " = ");
         while (number % 2 == 0) {
@@ -12,7 +16,7 @@ public class PrimeFactorsOfNumber {
         }
         if (number == 1)
             return;
-        final long BORDER = (long)Math.sqrt(number);
+
         int divisor = 3;
         while (number > 1) {
             while (number % divisor == 0) {
@@ -24,5 +28,9 @@ public class PrimeFactorsOfNumber {
             }
             divisor += 2;
         }
+    }
+
+    public static long calculateArithmeticSum(long a1, long an, long n) {
+        return ((a1 + an) * n) / 2;
     }
 }

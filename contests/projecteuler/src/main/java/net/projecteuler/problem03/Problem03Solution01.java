@@ -5,7 +5,7 @@ package net.projecteuler.problem03;
  * What is the largest prime factor of the number 600851475143?
  */
 
-import static net.projecteuler.PrimeFactorsOfNumber.printPrimeFactorsOfNumber;
+import static net.projecteuler.EulerUtils.printPrimeFactorsOfNumber;
 
 /**
  * Solution:
