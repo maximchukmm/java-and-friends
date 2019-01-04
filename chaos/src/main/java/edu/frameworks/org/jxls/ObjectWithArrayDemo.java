@@ -1,6 +1,5 @@
 package edu.frameworks.org.jxls;
 
-import org.joda.time.DateTime;
 import org.jxls.common.Context;
 import org.jxls.util.JxlsHelper;
 
@@ -8,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.time.LocalDateTime;
 import java.util.stream.IntStream;
 
 public class ObjectWithArrayDemo {
@@ -26,7 +26,7 @@ public class ObjectWithArrayDemo {
     }
 
     private static ObjectWithArray generateData() {
-        ObjectWithArray data = new ObjectWithArray(DateTime.now().toString());
+        ObjectWithArray data = new ObjectWithArray(LocalDateTime.now().toString());
         IntStream.range(1, 10).forEach(data::addNumber);
         System.out.println(data);
         return data;
