@@ -1,6 +1,6 @@
-package edu.reflection;
+package edu.reflection.entityinfoextractor;
 
-import edu.reflection.uniqueconstraints.BaseEntity;
+import edu.reflection.entityinfoextractor.uniqueconstraints.BaseEntity;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Column;

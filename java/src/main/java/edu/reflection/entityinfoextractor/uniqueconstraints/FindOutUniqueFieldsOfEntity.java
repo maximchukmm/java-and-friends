@@ -1,8 +1,8 @@
-package edu.reflection.uniqueconstraints;
+package edu.reflection.entityinfoextractor.uniqueconstraints;
 
 import javax.persistence.*;
 
-import static edu.reflection.ClassInfoExtractor.extractUniqueColumnNames;
+import static edu.reflection.entityinfoextractor.ClassInfoExtractor.extractUniqueColumnNames;
 
 public class FindOutUniqueFieldsOfEntity {
 
