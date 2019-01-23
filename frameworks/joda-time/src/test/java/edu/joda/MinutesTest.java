@@ -73,9 +73,11 @@ public class MinutesTest {
         LocalTime start = localTime("23:00:00");
         LocalTime end = localTime("01:00:00");
 
-        int expectedMinutesBetween = (end.getMillisOfDay() - start.getMillisOfDay()) / (1000 * 60);
+        int expectedMinutesBetweenCalculated = (end.getMillisOfDay() - start.getMillisOfDay()) / (1000 * 60);
+        int expectedMinutesBetween = -1320;
         int actualMinutesBetween = Minutes.minutesBetween(start, end).getMinutes();
 
+        assertEquals(expectedMinutesBetween, expectedMinutesBetweenCalculated);
         assertEquals(expectedMinutesBetween, actualMinutesBetween);
     }
 }
