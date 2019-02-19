@@ -10,7 +10,7 @@ import org.junit.Test;
 import javax.persistence.*;
 import java.util.List;
 
-import static edu.hibernate.util.HibernateUtils.selectAllJpa;
+import static edu.hibernate.util.HibernateUtils.selectAllJpql;
 import static edu.hibernate.util.HibernateUtils.selectAllNative;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -40,7 +40,7 @@ public class SoftDeleteWithSimpleEntityTest extends HibernateBaseTest {
         });
 
         List<AccountWithDeleted> accounts = doInTransaction(session -> {
-            return selectAllJpa(session, AccountWithDeleted.class);
+            return selectAllJpql(session, AccountWithDeleted.class);
         });
 
         assertTrue(accounts.isEmpty());

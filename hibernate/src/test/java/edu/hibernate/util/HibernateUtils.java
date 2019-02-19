@@ -10,11 +10,10 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-//todo rename Jpa to JPQL
 abstract public class HibernateUtils {
-    public static <ENTITY> List<ENTITY> selectAllJpa(Session session, Class<ENTITY> clazz) {
-        String selectAllJpa = "from " + getEntityName(clazz);
-        return session.createQuery(selectAllJpa, clazz).getResultList();
+    public static <ENTITY> List<ENTITY> selectAllJpql(Session session, Class<ENTITY> clazz) {
+        String selectAllJpql = "from " + getEntityName(clazz);
+        return session.createQuery(selectAllJpql, clazz).getResultList();
     }
 
     private static String getEntityName(Class<?> clazz) {

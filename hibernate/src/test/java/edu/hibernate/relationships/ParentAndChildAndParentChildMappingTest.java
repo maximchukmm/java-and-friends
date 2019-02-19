@@ -67,7 +67,7 @@ public class ParentAndChildAndParentChildMappingTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpa(session, OwnerVehicleMapping.class);
+            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpql(session, OwnerVehicleMapping.class);
 
             assertFalse(
                 ownerVehicleMappings
@@ -95,13 +95,13 @@ public class ParentAndChildAndParentChildMappingTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<TemporaryOwner> temporaryOwners = HibernateUtils.selectAllJpa(session, TemporaryOwner.class);
+            List<TemporaryOwner> temporaryOwners = HibernateUtils.selectAllJpql(session, TemporaryOwner.class);
             assertEquals(2, temporaryOwners.size());
 
-            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpa(session, OwnerVehicleMapping.class);
+            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpql(session, OwnerVehicleMapping.class);
             assertEquals(3, ownerVehicleMappings.size());
 
-            List<Vehicle> vehicles = HibernateUtils.selectAllJpa(session, Vehicle.class);
+            List<Vehicle> vehicles = HibernateUtils.selectAllJpql(session, Vehicle.class);
             assertEquals(2, vehicles.size());
         });
     }
@@ -116,7 +116,7 @@ public class ParentAndChildAndParentChildMappingTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpa(session, OwnerVehicleMapping.class);
+            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpql(session, OwnerVehicleMapping.class);
 
             assertTrue(
                 ownerVehicleMappings

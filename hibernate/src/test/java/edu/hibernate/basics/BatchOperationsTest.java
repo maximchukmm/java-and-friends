@@ -105,7 +105,7 @@ public class BatchOperationsTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<ArithmeticProgression> values = HibernateUtils.selectAllJpa(session, ArithmeticProgression.class);
+            List<ArithmeticProgression> values = HibernateUtils.selectAllJpql(session, ArithmeticProgression.class);
 
             assertEquals(numberOfInserts, values.size());
         });

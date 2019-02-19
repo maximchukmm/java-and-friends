@@ -72,7 +72,7 @@ public class UseDbProviderReservedKeywordForTableNameInSqlDeleteAndWhereAnnotati
         });
 
         doInTransaction(session -> {
-            List<OrderInfo> orderInfos = HibernateUtils.selectAllJpa(session, OrderInfo.class);
+            List<OrderInfo> orderInfos = HibernateUtils.selectAllJpql(session, OrderInfo.class);
 
             assertFalse(orderInfos.isEmpty());
         });

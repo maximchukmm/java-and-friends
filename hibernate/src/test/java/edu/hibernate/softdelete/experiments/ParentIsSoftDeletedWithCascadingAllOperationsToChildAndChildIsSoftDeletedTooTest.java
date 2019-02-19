@@ -45,7 +45,7 @@ public class ParentIsSoftDeletedWithCascadingAllOperationsToChildAndChildIsSoftD
         });
 
         doInTransaction(session -> {
-            List<Book> books = HibernateUtils.selectAllJpa(session, Book.class);
+            List<Book> books = HibernateUtils.selectAllJpql(session, Book.class);
 
             assertTrue(books.isEmpty());
         });

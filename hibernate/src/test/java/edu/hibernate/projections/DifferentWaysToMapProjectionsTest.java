@@ -68,7 +68,7 @@ public class DifferentWaysToMapProjectionsTest extends HibernateBaseTest {
                         "order by p.id", Tuple.class)
                 .getResultList();
 
-            List<Post> postEntities = HibernateUtils.selectAllJpa(session, Post.class);
+            List<Post> postEntities = HibernateUtils.selectAllJpql(session, Post.class);
             postEntities.sort(Comparator.comparing(Post::getId));
 
             for (int i = 0; i < postDTOs.size(); i++) {
@@ -112,7 +112,7 @@ public class DifferentWaysToMapProjectionsTest extends HibernateBaseTest {
                         "ORDER BY p.id", Tuple.class)
                 .getResultList();
 
-            List<Post> postEntities = HibernateUtils.selectAllJpa(session, Post.class);
+            List<Post> postEntities = HibernateUtils.selectAllJpql(session, Post.class);
             postEntities.sort(Comparator.comparing(Post::getId));
 
             for (int i = 0; i < postDTOs.size(); i++) {

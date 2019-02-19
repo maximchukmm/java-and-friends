@@ -76,7 +76,7 @@ public class AuditingBulkOperationsTest extends HibernateBaseTest {
     @Test
     public void whenUpdateEntitiesOneByOne_ThenEntitiesAreAudited() {
         doInTransaction(session -> {
-            List<Transport> entities = HibernateUtils.selectAllJpa(session, Transport.class)
+            List<Transport> entities = HibernateUtils.selectAllJpql(session, Transport.class)
                 .stream()
                 .filter(transport -> transport.getType().equals("car") || transport.getType().equals("motorbike"))
                 .collect(Collectors.toList());

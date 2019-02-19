@@ -147,7 +147,7 @@ public class CriteriaApiBasicsTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<BasicData> allEntities = HibernateUtils.selectAllJpa(session, BasicData.class);
+            List<BasicData> allEntities = HibernateUtils.selectAllJpql(session, BasicData.class);
 
             List<BasicData> entitiesWithNonZeroInteger = allEntities
                 .stream()

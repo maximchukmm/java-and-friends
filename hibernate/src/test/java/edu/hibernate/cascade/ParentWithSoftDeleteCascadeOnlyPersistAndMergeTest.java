@@ -46,7 +46,7 @@ public class ParentWithSoftDeleteCascadeOnlyPersistAndMergeTest extends Hibernat
         });
 
         doInTransaction(session -> {
-            List<Letter> letters = HibernateUtils.selectAllJpa(session, Letter.class);
+            List<Letter> letters = HibernateUtils.selectAllJpql(session, Letter.class);
 
             Assert.assertEquals(ENG.getNumberOfLetters(), letters.size());
         });

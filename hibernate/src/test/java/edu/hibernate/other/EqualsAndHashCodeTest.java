@@ -35,7 +35,7 @@ public class EqualsAndHashCodeTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<BadEqualsBadHashCode> entities = HibernateUtils.selectAllJpa(session, BadEqualsBadHashCode.class);
+            List<BadEqualsBadHashCode> entities = HibernateUtils.selectAllJpql(session, BadEqualsBadHashCode.class);
 
             assertEquals(1, entities.size());
         });
@@ -55,7 +55,7 @@ public class EqualsAndHashCodeTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<BadEqualsBadHashCode> entities = HibernateUtils.selectAllJpa(session, BadEqualsBadHashCode.class);
+            List<BadEqualsBadHashCode> entities = HibernateUtils.selectAllJpql(session, BadEqualsBadHashCode.class);
 
             assertEquals(1, entities.size());
             assertEquals("new info", entities.get(0).getValue());

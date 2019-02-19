@@ -18,7 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static edu.hibernate.util.HibernateUtils.selectAllJpa;
+import static edu.hibernate.util.HibernateUtils.selectAllJpql;
 import static edu.hibernate.util.HibernateUtils.selectAllNative;
 import static org.junit.Assert.*;
 
@@ -66,7 +66,7 @@ public class SoftDeleteWithSeveralMappedEntitiesTest extends HibernateBaseTest {
         prepareTags();
 
         doInTransaction(session -> {
-            List<Tag> tags = selectAllJpa(session, Tag.class);
+            List<Tag> tags = selectAllJpql(session, Tag.class);
             assertEquals(4, tags.size());
         });
     }
@@ -173,7 +173,7 @@ public class SoftDeleteWithSeveralMappedEntitiesTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<PostComment> postComments = selectAllJpa(session, PostComment.class);
+            List<PostComment> postComments = selectAllJpql(session, PostComment.class);
             assertEquals(1, postComments.size());
             assertEquals(1L, (long) postComments.get(0).getId());
         });

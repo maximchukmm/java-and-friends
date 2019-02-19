@@ -8,7 +8,7 @@ import org.junit.Test;
 import javax.persistence.*;
 import java.util.List;
 
-import static edu.hibernate.util.HibernateUtils.selectAllJpa;
+import static edu.hibernate.util.HibernateUtils.selectAllJpql;
 import static org.junit.Assert.assertEquals;
 
 public class HelloTest extends HibernateBaseTest {
@@ -28,7 +28,7 @@ public class HelloTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<Hello> all = selectAllJpa(session, Hello.class);
+            List<Hello> all = selectAllJpql(session, Hello.class);
             assertEquals(1, all.size());
             assertEquals(greetings, all.get(0).getGreetings());
         });

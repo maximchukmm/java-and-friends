@@ -92,12 +92,12 @@ public class SoftDeleteWithMappingEntityAndCascadingAllOperationsToMappingEntity
     @Test
     public void whenRemoveAllVehicles_ThenRemoveAllMappingsAndJpaSelectReturnEmptyListOfMappings() {
         doInTransaction(session -> {
-            List<Vehicle> vehicles = HibernateUtils.selectAllJpa(session, Vehicle.class);
+            List<Vehicle> vehicles = HibernateUtils.selectAllJpql(session, Vehicle.class);
             vehicles.forEach(session::remove);
         });
 
         doInTransaction(session -> {
-            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpa(session, OwnerVehicleMapping.class);
+            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpql(session, OwnerVehicleMapping.class);
 
             assertTrue(ownerVehicleMappings.isEmpty());
         });
@@ -106,7 +106,7 @@ public class SoftDeleteWithMappingEntityAndCascadingAllOperationsToMappingEntity
     @Test
     public void whenRemoveAllVehicles_ThenRemoveAllMappingsAndNativeSelectReturnEmptyListOfMappings() {
         doInTransaction(session -> {
-            List<Vehicle> vehicles = HibernateUtils.selectAllJpa(session, Vehicle.class);
+            List<Vehicle> vehicles = HibernateUtils.selectAllJpql(session, Vehicle.class);
             vehicles.forEach(session::remove);
         });
 
@@ -120,18 +120,18 @@ public class SoftDeleteWithMappingEntityAndCascadingAllOperationsToMappingEntity
     @Test
     public void whenRemoveAllMappings_ThenTemporaryOwnersAndVehiclesAreNotChanged() {
         doInTransaction(session -> {
-            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpa(session, OwnerVehicleMapping.class);
+            List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllJpql(session, OwnerVehicleMapping.class);
             ownerVehicleMappings.forEach(session::remove);
         });
 
         doInTransaction(session -> {
-            List<TemporaryOwner> owners = HibernateUtils.selectAllJpa(session, TemporaryOwner.class);
+            List<TemporaryOwner> owners = HibernateUtils.selectAllJpql(session, TemporaryOwner.class);
 
             assertEquals(2, owners.size());
         });
 
         doInTransaction(session -> {
-            List<Vehicle> vehicles = HibernateUtils.selectAllJpa(session, Vehicle.class);
+            List<Vehicle> vehicles = HibernateUtils.selectAllJpql(session, Vehicle.class);
 
             assertEquals(2, vehicles.size());
         });

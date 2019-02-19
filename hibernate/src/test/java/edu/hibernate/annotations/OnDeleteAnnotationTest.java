@@ -42,7 +42,7 @@ public class OnDeleteAnnotationTest extends HibernateBaseTest {
         });
 
         doInTransaction(session -> {
-            List<Child> children = HibernateUtils.selectAllJpa(session, Child.class);
+            List<Child> children = HibernateUtils.selectAllJpql(session, Child.class);
 
             assertTrue(children.isEmpty());
         });
