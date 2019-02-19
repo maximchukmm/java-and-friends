@@ -179,9 +179,8 @@ public class SessionInterfaceTest extends HibernateBaseTest {
         });
     }
 
-    //todo add same test but with select by title
     @Test
-    public void contains_ExperimentsWithPersistenceContext() {
+    public void contains_ExperimentsWithPersistenceContext_FindById() {
         SimpleEntity entityFromDb = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Persistence Context");
             session.persist(entity);
@@ -202,6 +201,34 @@ public class SessionInterfaceTest extends HibernateBaseTest {
             assertFalse(session.contains(entity1));
 
             SimpleEntity entity2 = session.find(SimpleEntity.class, entityFromDb.getId());
+
+            assertFalse(session.contains(entity1));
+            assertTrue(session.contains(entity2));
+        });
+    }
+
+    @Test
+    public void contains_ExperimentsWithPersistenceContext_FindByTitle() {
+        SimpleEntity entityFromDb = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Persistence Context");
+            session.persist(entity);
+
+            assertTrue(session.contains(entity));
+            return entity;
+        });
+
+        doInTransaction(session -> {
+            assertFalse(session.contains(entityFromDb));
+
+            SimpleEntity entity1 = session.createQuery("select s from SimpleEntity s where s.title = 'Persistence Context'", SimpleEntity.class).getSingleResult();
+
+            assertTrue(session.contains(entity1));
+
+            session.clear();
+
+            assertFalse(session.contains(entity1));
+
+            SimpleEntity entity2 = session.createQuery("select s from SimpleEntity s where s.title = 'Persistence Context'", SimpleEntity.class).getSingleResult();
 
             assertFalse(session.contains(entity1));
             assertTrue(session.contains(entity2));
