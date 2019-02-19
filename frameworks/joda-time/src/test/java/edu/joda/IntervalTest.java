@@ -214,6 +214,30 @@ public class IntervalTest {
     }
 
     @Test
+    public void whenCreateIntervalWithStartInOneTimeZoneAndEndInAnotherTimeZone_ThenUseStartTimeZoneForStartAndEnd() {
+        DateTime startWithNonUtc = dateTime("2019-02-01 10:00:00", DateTimeZone.forID("Asia/Omsk"));
+        DateTime endWithUtc = dateTime("2019-02-01 17:15:00");
+
+        Interval intervalWithNonUtcStart = new Interval(startWithNonUtc, endWithUtc);
+
+        assertTrue(startWithNonUtc.isEqual(intervalWithNonUtcStart.getStart()));
+        assertTrue(endWithUtc.isEqual(intervalWithNonUtcStart.getEnd()));
+        assertEquals(startWithNonUtc, intervalWithNonUtcStart.getStart());
+        assertNotEquals(endWithUtc, intervalWithNonUtcStart.getEnd());
+
+
+        DateTime startWithUtc = dateTime("2019-02-01 10:00:00");
+        DateTime endWithNonUtc = dateTime("2019-02-01 17:15:00", DateTimeZone.forID("Asia/Omsk"));
+
+        Interval intervalWithUtcStart = new Interval(startWithUtc, endWithNonUtc);
+
+        assertTrue(startWithUtc.isEqual(intervalWithUtcStart.getStart()));
+        assertTrue(endWithNonUtc.isEqual(intervalWithUtcStart.getEnd()));
+        assertEquals(startWithUtc, intervalWithUtcStart.getStart());
+        assertNotEquals(endWithNonUtc, intervalWithUtcStart.getEnd());
+    }
+
+    @Test
     public void isAfter_WhenDateTimeIsBeforeOfIntervalStart_ThenReturnTrue() {
         DateTime dateTime = dateTime("2018-06-23 15:00:00");
         Interval interval = interval(
@@ -335,29 +359,5 @@ public class IntervalTest {
         long actualSeconds = IntervalUtils.getDurationInSeconds(interval);
 
         assertTrue(actualSeconds > Integer.MAX_VALUE);
-    }
-
-    @Test
-    public void whenCreateIntervalWithStartInOneTimeZoneAndEndInAnotherTimeZone_ThenUseStartTimeZoneForStartAndEnd() {
-        DateTime startWithNonUtc = dateTime("2019-02-01 10:00:00", DateTimeZone.forID("Asia/Omsk"));
-        DateTime endWithUtc = dateTime("2019-02-01 17:15:00");
-
-        Interval intervalWithNonUtcStart = new Interval(startWithNonUtc, endWithUtc);
-
-        assertTrue(startWithNonUtc.isEqual(intervalWithNonUtcStart.getStart()));
-        assertTrue(endWithUtc.isEqual(intervalWithNonUtcStart.getEnd()));
-        assertEquals(startWithNonUtc, intervalWithNonUtcStart.getStart());
-        assertNotEquals(endWithUtc, intervalWithNonUtcStart.getEnd());
-
-
-        DateTime startWithUtc = dateTime("2019-02-01 10:00:00");
-        DateTime endWithNonUtc = dateTime("2019-02-01 17:15:00", DateTimeZone.forID("Asia/Omsk"));
-
-        Interval intervalWithUtcStart = new Interval(startWithUtc, endWithNonUtc);
-
-        assertTrue(startWithUtc.isEqual(intervalWithUtcStart.getStart()));
-        assertTrue(endWithNonUtc.isEqual(intervalWithUtcStart.getEnd()));
-        assertEquals(startWithUtc, intervalWithUtcStart.getStart());
-        assertNotEquals(endWithNonUtc, intervalWithUtcStart.getEnd());
     }
 }
