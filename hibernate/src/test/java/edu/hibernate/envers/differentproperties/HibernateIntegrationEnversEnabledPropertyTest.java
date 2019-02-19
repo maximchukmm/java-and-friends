@@ -20,7 +20,7 @@ public class HibernateIntegrationEnversEnabledPropertyTest extends HibernateBase
     @Override
     protected Class<?>[] entities() {
         return new Class[]{
-            SimpleEntity.class
+            SimpleEntityWithLongAndUniqueName.class
         };
     }
 
@@ -36,26 +36,26 @@ public class HibernateIntegrationEnversEnabledPropertyTest extends HibernateBase
     public void whenEnversDisabled_ThenDoNotCreateAdditionalTablesForAuditingEntities() {
         doInTransaction(session -> {
             List audTableInfo = session
-                .createNativeQuery("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'SIMPLE_ENTITY_AUD'")
+                .createNativeQuery("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'SIMPLE_ENTITY_WITH_LONG_AND_UNIQUE_NAME_AUD'")
                 .getResultList();
 
             Assert.assertTrue(audTableInfo.isEmpty());
         });
     }
 
-    @Entity(name = "SimpleEntity")
-    @Table(name = "simple_entity")
+    @Entity(name = "SimpleEntityWithLongAndUniqueName ")
+    @Table(name = "simple_entity_with_long_and_unique_name ")
     @Audited
     @Data
     @NoArgsConstructor
-    static class SimpleEntity {
+    static class SimpleEntityWithLongAndUniqueName {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
 
         private String data;
 
-        SimpleEntity(String data) {
+        SimpleEntityWithLongAndUniqueName(String data) {
             this.data = data;
         }
     }
