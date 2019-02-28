@@ -4,8 +4,8 @@ import java.util.stream.DoubleStream;
 
 public class LeastSquaresDemo {
     public static void main(String[] args) {
-        double x[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        double y[] = {8, 6, 10, 6, 10, 13, 9, 11, 15, 17};
+        double[] x = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        double[] y = {8, 6, 10, 6, 10, 13, 9, 11, 15, 17};
         int n = x.length;
 
         double sumX = .0;
