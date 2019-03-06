@@ -361,11 +361,13 @@ public class IntervalTest {
     public void dayOfWeek_WithMinimumValue() {
         DateTime monday = dateTime("2019-03-04 00:00:00", EUROPE_MOSCOW);
         DateTime tuesday = dateTime("2019-03-05 00:00:00", EUROPE_MOSCOW);
+        DateTime sameWeekWithNonZeroTime = dateTime("2019-03-06 06:30:45", EUROPE_MOSCOW);
         DateTime sunday = dateTime("2019-03-10 00:00:00", EUROPE_MOSCOW);
 
         assertEquals(monday.dayOfWeek().withMinimumValue(), monday);
         assertNotEquals(tuesday.dayOfWeek().withMinimumValue(), tuesday);
         assertEquals(tuesday.dayOfWeek().withMinimumValue(), monday);
         assertEquals(sunday.dayOfWeek().withMinimumValue().plusDays(6), sunday);
+        assertNotEquals(sameWeekWithNonZeroTime.dayOfWeek().withMinimumValue(), monday);
     }
 }
