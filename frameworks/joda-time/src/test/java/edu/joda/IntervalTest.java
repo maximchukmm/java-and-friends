@@ -9,12 +9,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static edu.joda.util.JodaUtils.dateTime;
-import static edu.joda.util.JodaUtils.interval;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static edu.joda.util.JodaUtils.*;
+import static org.junit.Assert.*;
 
 public class IntervalTest {
 
@@ -359,5 +355,17 @@ public class IntervalTest {
         long actualSeconds = IntervalUtils.getDurationInSeconds(interval);
 
         assertTrue(actualSeconds > Integer.MAX_VALUE);
+    }
+
+    @Test
+    public void dayOfWeek_WithMinimumValue() {
+        DateTime monday = dateTime("2019-03-04 00:00:00", EUROPE_MOSCOW);
+        DateTime tuesday = dateTime("2019-03-05 00:00:00", EUROPE_MOSCOW);
+        DateTime sunday = dateTime("2019-03-10 00:00:00", EUROPE_MOSCOW);
+
+        assertEquals(monday.dayOfWeek().withMinimumValue(), monday);
+        assertNotEquals(tuesday.dayOfWeek().withMinimumValue(), tuesday);
+        assertEquals(tuesday.dayOfWeek().withMinimumValue(), monday);
+        assertEquals(sunday.dayOfWeek().withMinimumValue().plusDays(6), sunday);
     }
 }
