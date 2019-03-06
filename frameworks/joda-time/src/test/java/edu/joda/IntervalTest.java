@@ -370,4 +370,12 @@ public class IntervalTest {
         assertEquals(sunday.dayOfWeek().withMinimumValue().plusDays(6), sunday);
         assertNotEquals(sameWeekWithNonZeroTime.dayOfWeek().withMinimumValue(), monday);
     }
+
+    @Test
+    public void withMillisOfDay_WhenMillisOfDaySetToZero_ThenSetTimePartToZero() {
+        DateTime dateTimeWithZeroTime = dateTime("2019-03-06 00:00:00", EUROPE_MOSCOW);
+        DateTime dateTimeWithNonZeroTime = dateTime("2019-03-06 12:45:30", EUROPE_MOSCOW).plusMillis(123);
+
+        assertEquals(dateTimeWithZeroTime, dateTimeWithNonZeroTime.withMillisOfDay(0));
+    }
 }
