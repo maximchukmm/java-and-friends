@@ -1,6 +1,9 @@
 package edu;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class Quick {
     public static void main(String[] args) {
@@ -81,17 +84,32 @@ public class Quick {
 //        Iterator<Integer> iterator = integers.iterator();
 //        System.out.println(iterator.hasNext());
 
-        Number n1 = myGenericFunction(1, 2.0);
-        System.out.println(n1);
+//        Number n1 = myGenericFunction(1, 2.0);
+//        System.out.println(n1);
+//
+//        Double n2 = myGenericFunction(1.0, 2.0);
+//        System.out.println(n2);
+//
+//        Integer n3 = myGenericFunction(1, 2);
+//        System.out.println(n3);
+//
+//        Number n4 = myGenericFunction(1, 2L);
+//        System.out.println(n4);
 
-        Double n2 = myGenericFunction(1.0, 2.0);
-        System.out.println(n2);
+//        List<Integer> list = new ArrayList<>();
+//        list.add(1);
+//        list.add(2);
+//        list.add(3);
+//        list.add(4);
+//        list.add(5);
+//
+//        Collections.shuffle(list);
+//
+//        System.out.println(list);
 
-        Integer n3 = myGenericFunction(1, 2);
-        System.out.println(n3);
-
-        Number n4 = myGenericFunction(1, 2L);
-        System.out.println(n4);
+//        System.out.println(new UUID(-100, -100));
+//        System.out.println(new UUID(-100, -100));
+//        System.out.println(new UUID(-100, -100).equals(new UUID(-100, -100)));
     }
 
     static <T> T myGenericFunction(T v1, T v2) {
