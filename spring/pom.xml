@@ -18,7 +18,7 @@
         <module>spring-boot-and-postgres</module>
         <module>spring-boot-key-value-settings</module>
         <module>spring-different-experiments</module>
-        <module>spring-boot-and-swagger</module>
+        <module>spring-boot-hibernate-entity-listener</module>
     </modules>
 
 </project>
