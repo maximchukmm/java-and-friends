@@ -18,6 +18,9 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * Based on https://github.com/vladmihalcea/hibernate-master-class
+ */
 abstract public class HibernateBaseTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(HibernateBaseTest.class);
 
