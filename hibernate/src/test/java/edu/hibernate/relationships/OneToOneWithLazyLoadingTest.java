@@ -40,6 +40,7 @@ public class OneToOneWithLazyLoadingTest extends HibernateBaseTest {
     public void whenInOneToOneRelationshipFetchTypeIsLazy_ThenDespiteThatThereTwoSelect() {
         doInTransaction(session -> {
             User user = session.find(User.class, 1L);
+            System.out.println(user.getId());
         });
     }
 
@@ -47,6 +48,7 @@ public class OneToOneWithLazyLoadingTest extends HibernateBaseTest {
     public void whenSelectChildInOneToOneRelationshipFetchTypeIsLazy_ThenExecuteOneSelect() {
         doInTransaction(session -> {
             Staff staff = session.find(Staff.class, 1L);
+            System.out.println(staff.getId());
         });
     }
 

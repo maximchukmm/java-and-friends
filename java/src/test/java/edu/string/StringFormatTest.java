@@ -3,7 +3,7 @@ package edu.string;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class StringTest {
+public class StringFormatTest {
 
     @Test
     public void whenWithZeroFlag_ThenAddAdditionalZerosIfNecessary() {
