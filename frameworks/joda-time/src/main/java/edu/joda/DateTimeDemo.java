@@ -1,11 +1,7 @@
 package edu.joda;
 
-import org.joda.time.*;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 
 
 class DateTimeDemo {
@@ -176,37 +172,50 @@ class DateTimeDemo {
 //        System.out.println(dateTime1);
 //        System.out.println(dateTime2);
 
-        DateTime now = new DateTime(2018, 10, 10, 15, 0, 0, 0, DateTimeZone.UTC);
-        DateTime expirationDateBeforeNow = now.minusDays(0).minusHours(1).minusMinutes(5);
-        DateTime expirationDateAfterNow = now.plusDays(1).plusHours(2);
+//        DateTime now = new DateTime(2018, 10, 10, 15, 0, 0, 0, DateTimeZone.UTC);
+//        DateTime expirationDateBeforeNow = now.minusDays(0).minusHours(1).minusMinutes(5);
+//        DateTime expirationDateAfterNow = now.plusDays(1).plusHours(2);
+//
+//        Duration duration1 = new Duration(expirationDateBeforeNow, now);
+//        System.out.println("duration1 = " + duration1);
+//        System.out.println("days = " + duration1.getStandardDays());
+//        System.out.println("hours = " + duration1.getStandardHours());
+//        System.out.println("minutes = " + duration1.getStandardMinutes());
+//        System.out.println("minutes % 60 = " + duration1.getStandardMinutes() % 60);
+//        System.out.println("seconds = " + duration1.getStandardSeconds());
+//
+//        System.out.println();
+//
+//        Duration duration2 = new Duration(expirationDateAfterNow, now);
+//        System.out.println("duration2 = " + duration2);
+//        System.out.println("days = " + duration2.getStandardDays());
+//        System.out.println("hours = " + duration2.getStandardHours());
+//        System.out.println("minutes = " + duration2.getStandardMinutes());
+//        System.out.println("minutes % 60 = " + duration2.getStandardMinutes() % 60);
+//        System.out.println("seconds = " + duration2.getStandardSeconds());
+//
+//        System.out.println();
+//
+//        DateTime copyNow = now.plusHours(0);
+//        Duration zeroDuration = new Duration(now, copyNow);
+//        System.out.println("zeroDuration = " + zeroDuration);
+//        System.out.println("days = " + zeroDuration.getStandardDays());
+//        System.out.println("hours = " + zeroDuration.getStandardHours());
+//        System.out.println("minutes = " + zeroDuration.getStandardMinutes());
+//        System.out.println("minutes % 60 = " + zeroDuration.getStandardMinutes() % 60);
+//        System.out.println("seconds = " + zeroDuration.getStandardSeconds());
 
-        Duration duration1 = new Duration(expirationDateBeforeNow, now);
-        System.out.println("duration1 = " + duration1);
-        System.out.println("days = " + duration1.getStandardDays());
-        System.out.println("hours = " + duration1.getStandardHours());
-        System.out.println("minutes = " + duration1.getStandardMinutes());
-        System.out.println("minutes % 60 = " + duration1.getStandardMinutes() % 60);
-        System.out.println("seconds = " + duration1.getStandardSeconds());
+        int length = 6 * 5;
+        int step = 2 * 5;
+        DateTime from = new DateTime(2019, 4, 1, 0, 0, 0, DateTimeZone.UTC);
+        DateTime to = from.plusMinutes(120);
+        DateTime currFrom = from;
+        DateTime currTo = currFrom.plusMinutes(length);
 
-        System.out.println();
-
-        Duration duration2 = new Duration(expirationDateAfterNow, now);
-        System.out.println("duration2 = " + duration2);
-        System.out.println("days = " + duration2.getStandardDays());
-        System.out.println("hours = " + duration2.getStandardHours());
-        System.out.println("minutes = " + duration2.getStandardMinutes());
-        System.out.println("minutes % 60 = " + duration2.getStandardMinutes() % 60);
-        System.out.println("seconds = " + duration2.getStandardSeconds());
-
-        System.out.println();
-
-        DateTime copyNow = now.plusHours(0);
-        Duration zeroDuration = new Duration(now, copyNow);
-        System.out.println("zeroDuration = " + zeroDuration);
-        System.out.println("days = " + zeroDuration.getStandardDays());
-        System.out.println("hours = " + zeroDuration.getStandardHours());
-        System.out.println("minutes = " + zeroDuration.getStandardMinutes());
-        System.out.println("minutes % 60 = " + zeroDuration.getStandardMinutes() % 60);
-        System.out.println("seconds = " + zeroDuration.getStandardSeconds());
+        for (; !currTo.isAfter(to); currFrom = currFrom.plusMinutes(step), currTo = currFrom.plusMinutes(length)) {
+            System.out.println("currFrom =\t" + currFrom);
+            System.out.println("currTo =\t" + currTo);
+            System.out.println();
+        }
     }
 }

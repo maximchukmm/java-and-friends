@@ -1,9 +1,6 @@
 package edu;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
 public class Quick {
     public static void main(String[] args) {
@@ -110,6 +107,20 @@ public class Quick {
 //        System.out.println(new UUID(-100, -100));
 //        System.out.println(new UUID(-100, -100));
 //        System.out.println(new UUID(-100, -100).equals(new UUID(-100, -100)));
+
+//        boolean[] booleans = new boolean[2];
+//        System.out.println(Arrays.toString(booleans));
+
+//        System.out.println(false | false);
+//        System.out.println(false | true);
+//        System.out.println(true | false);
+//        System.out.println(true | true);
+
+//        boolean b = false;
+//        b |= true;
+//        System.out.println(b);
+//        b |= false;
+//        System.out.println(b);
     }
 
     static <T> T myGenericFunction(T v1, T v2) {

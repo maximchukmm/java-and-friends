@@ -14,4 +14,12 @@ public class ArraysTest {
             Arrays.copyOfRange(new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8}, 4, 7)
         );
     }
+
+    @Test
+    public void copyOf_whenCopy_Then() {
+        Assert.assertArrayEquals(
+            new int[]{0, 1, 2},
+            Arrays.copyOf(new int[]{0, 1, 2, 3, 4, 5, 6}, 3)
+        );
+    }
 }

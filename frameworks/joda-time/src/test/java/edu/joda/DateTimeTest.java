@@ -1,5 +1,7 @@
 package edu.joda;
 
+import edu.joda.util.JodaUtils;
+import org.jfree.data.time.Week;
 import org.joda.time.DateTime;
 import org.joda.time.IllegalInstantException;
 import org.joda.time.LocalDate;
@@ -232,5 +234,30 @@ public class DateTimeTest {
 
         assertTrue(utc.isEqual(moscow));
         assertTrue(utc.getWeekOfWeekyear() != moscow.getWeekOfWeekyear());
+    }
+
+    //todo complete test for converting org.jfree.data.time.Week to DateTime
+    @Test
+    public void When_Then1() {
+        Week week = new Week(1, 2017);
+
+        System.out.println(week.getStart());
+        System.out.println(week.getEnd());
+
+        System.out.println();
+
+        System.out.println(new DateTime(week.getFirstMillisecond(), UTC));
+        System.out.println(new DateTime(week.getLastMillisecond(), UTC));
+
+        System.out.println();
+
+        System.out.println(new DateTime(week.getFirstMillisecond()));
+        System.out.println(new DateTime(week.getLastMillisecond()));
+
+        System.out.println();
+
+        System.out.println(new DateTime(week.getFirstMillisecond()).withZoneRetainFields(UTC));
+        System.out.println(new DateTime(week.getFirstMillisecond()).withZoneRetainFields(UTC).withZone(EUROPE_MOSCOW));
+        System.out.println(new DateTime(week.getLastMillisecond()));
     }
 }

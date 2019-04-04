@@ -26,15 +26,6 @@ import java.util.List;
 
 public class ParentOneToOneChildParentOneToManyTest extends HibernateBaseTest {
 
-    @Override
-    protected Class<?>[] entities() {
-        return new Class[]{
-            ParentOneToOne.class,
-            ParentOneToMany.class,
-            Child.class
-        };
-    }
-
     @Test(expected = PersistenceException.class)
     public void givenParentOneToOneWithoutAnyCascading_WhenTryingToDeleteParentOneToOne_ThenThrowPersistenceException() {
         doInTransaction(session -> {
@@ -89,6 +80,15 @@ public class ParentOneToOneChildParentOneToManyTest extends HibernateBaseTest {
             session.persist(parentOneToMany1);
             session.persist(parentOneToMany2);
         });
+    }
+
+    @Override
+    protected Class<?>[] entities() {
+        return new Class[]{
+            ParentOneToOne.class,
+            ParentOneToMany.class,
+            Child.class
+        };
     }
 
     @Entity(name = "ParentOneToOne")

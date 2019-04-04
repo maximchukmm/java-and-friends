@@ -102,4 +102,30 @@ public class CollectionTest {
 
         assertTrue(expected.containsAll(list));
     }
+
+//    @Test(expected = ConcurrentModificationException.class)
+    //todo figure out why ConcurrentModificationException wasn't thrown
+    @Test
+    public void When_Then() {
+        List<Integer> list = new ArrayList<>();
+        IntStream.range(1, 10).forEach(list::add);
+
+        for (Integer integer : list) {
+            foo(list);
+
+            System.out.println(integer);
+
+            foo(list);
+
+            System.out.println(integer);
+
+            foo(list);
+        }
+    }
+
+    private void foo(List<Integer> list) {
+        for (Integer integer1 : list) {
+            System.out.println(integer1);
+        }
+    }
 }
