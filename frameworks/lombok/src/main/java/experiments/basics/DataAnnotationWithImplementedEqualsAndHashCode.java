@@ -1,4 +1,4 @@
-package experiments;
+package experiments.basics;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,15 +7,15 @@ import java.util.Objects;
 
 @Data
 @NoArgsConstructor
-public class DataAnnotationWIthImplementedEqualsAndHashCode {
+public class DataAnnotationWithImplementedEqualsAndHashCode {
     private String string;
 
     @Override
     public boolean equals(Object o) {
         System.out.println("equals");
         if (this == o) return true;
-        if (!(o instanceof DataAnnotationWIthImplementedEqualsAndHashCode)) return false;
-        DataAnnotationWIthImplementedEqualsAndHashCode that = (DataAnnotationWIthImplementedEqualsAndHashCode) o;
+        if (!(o instanceof DataAnnotationWithImplementedEqualsAndHashCode)) return false;
+        DataAnnotationWithImplementedEqualsAndHashCode that = (DataAnnotationWithImplementedEqualsAndHashCode) o;
         return Objects.equals(string, that.string);
     }
 
@@ -27,8 +27,8 @@ public class DataAnnotationWIthImplementedEqualsAndHashCode {
 
     public static void main(String[] args) {
         System.out.println(
-            new DataAnnotationWIthImplementedEqualsAndHashCode().equals(
-                new DataAnnotationWIthImplementedEqualsAndHashCode()
+            new DataAnnotationWithImplementedEqualsAndHashCode().equals(
+                new DataAnnotationWithImplementedEqualsAndHashCode()
             )
         );
     }
