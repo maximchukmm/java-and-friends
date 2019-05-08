@@ -8,6 +8,7 @@ import org.hibernate.UnresolvableObjectException;
 import org.junit.Test;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 import static org.junit.Assert.*;
 
@@ -293,6 +294,254 @@ public class SessionInterfaceTest extends HibernateBaseTest {
         });
     }
 
+    @Test
+    public void When_Then_1() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            SimpleEntity entityByIdByFind = null;
+
+            try {
+                entityByIdByFind = session.find(SimpleEntity.class, id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertEquals(entityById, entityByIdByFind);
+            assertSame(entityById, entityByIdByFind);
+        });
+    }
+
+    @Test
+    public void When_Then_2() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            SimpleEntity entityByIdByJpql = null;
+
+            try {
+                entityByIdByJpql = session.createQuery("select s from SimpleEntity s where s.id = :id", SimpleEntity.class).setParameter("id", id).getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertEquals(entityById, entityByIdByJpql);
+            assertSame(entityById, entityByIdByJpql);
+        });
+    }
+
+    @Test
+    public void When_Then_3() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            SimpleEntity entityByIdByNativeSql = null;
+
+            try {
+                entityByIdByNativeSql = session.createNativeQuery("SELECT * FROM simple_entity WHERE id = :id", SimpleEntity.class).setParameter("id", id).getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertEquals(entityById, entityByIdByNativeSql);
+            assertSame(entityById, entityByIdByNativeSql);
+        });
+    }
+
+    @Test
+    public void When_Then_4() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            Object[] entityByIdByNativeSql = null;
+
+            try {
+                entityByIdByNativeSql = (Object[]) session.createNativeQuery("SELECT * FROM simple_entity WHERE id = :id").setParameter("id", id).getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertNotNull(entityByIdByNativeSql);
+            assertEquals(entityById.getId(), (Long) ((BigInteger) entityByIdByNativeSql[0]).longValue());
+            assertNotEquals(entityById.getTitle(), entityByIdByNativeSql[1]);
+        });
+    }
+
+    @Test
+    public void When_Then_6() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            SimpleEntity entityByOldTitleByJpql = null;
+
+            try {
+                entityByOldTitleByJpql = session.createQuery("select s from SimpleEntity s where s.title = 'Old Title'", SimpleEntity.class).getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertNull(entityByOldTitleByJpql);
+        });
+    }
+
+    @Test
+    public void When_Then_7() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            SimpleEntity entityByOldTitleByNativeSql = null;
+
+            try {
+                entityByOldTitleByNativeSql = session.createNativeQuery("SELECT * FROM simple_entity WHERE title = 'Old Title'", SimpleEntity.class).getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertNull(entityByOldTitleByNativeSql);
+        });
+    }
+
+    @Test
+    public void When_Then_8() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            Object[] entityByOldTitleByNativeSql = null;
+
+            try {
+                entityByOldTitleByNativeSql = (Object[]) session.createNativeQuery("SELECT * FROM simple_entity WHERE title = 'Old Title'").getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertNotNull(entityByOldTitleByNativeSql);
+            assertEquals(entityById.getId(), (Long) ((BigInteger) entityByOldTitleByNativeSql[0]).longValue());
+            assertNotEquals(entityById.getTitle(), entityByOldTitleByNativeSql[1]);
+        });
+    }
+
+    @Test
+    public void When_Then_9() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            SimpleEntity entityByNewTitleByJpql = null;
+
+            try {
+                entityByNewTitleByJpql = session.createQuery("select s from SimpleEntity s where s.title = 'New Title'", SimpleEntity.class).getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertEquals(entityById, entityByNewTitleByJpql);
+            assertSame(entityById, entityByNewTitleByJpql);
+        });
+    }
+
+    @Test
+    public void When_Then_10() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            SimpleEntity entityByNewTitleByNativeSql = null;
+
+            try {
+                entityByNewTitleByNativeSql = session.createNativeQuery("SELECT * FROM simple_entity WHERE title = 'New Title'", SimpleEntity.class).getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertEquals(entityById, entityByNewTitleByNativeSql);
+            assertSame(entityById, entityByNewTitleByNativeSql);
+        });
+    }
+
+    @Test
+    public void When_Then_11() { //todom rename
+        Long id = doInTransaction(session -> {
+            SimpleEntity entity = new SimpleEntity("Old Title");
+            session.persist(entity);
+            return entity.getId();
+        });
+
+        doInTransaction(session -> {
+            SimpleEntity entityById = session.find(SimpleEntity.class, id);
+            entityById.setTitle("New Title");
+
+            Object entityByNewTitleByNativeSql = null;
+
+            try {
+                entityByNewTitleByNativeSql = session.createNativeQuery("SELECT * FROM simple_entity WHERE title = 'New Title'").getSingleResult();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            assertNull(entityByNewTitleByNativeSql);
+        });
+    }
 
     @Entity(name = "SimpleEntity")
     @Table(name = "simple_entity")
