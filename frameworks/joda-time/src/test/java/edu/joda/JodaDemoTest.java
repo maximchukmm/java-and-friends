@@ -5,6 +5,7 @@ import org.joda.time.DateTimeZone;
 import org.junit.Assert;
 import org.junit.Test;
 
+//todo extract tests to corresponding (DateTimeTest and DateTimeZoneTest) classes
 public class JodaDemoTest {
     private static final DateTimeZone UTC = DateTimeZone.UTC;
     private static final DateTimeZone EUROPE_MOSCOW = DateTimeZone.forID("Europe/Moscow");              // +3 hours
