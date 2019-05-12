@@ -7,7 +7,16 @@ import lombok.Setter;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Objects;
 
 /**
@@ -18,6 +27,23 @@ import java.util.Objects;
  * https://hibernate.atlassian.net/browse/HHH-10771
  */
 public class OneToOneWithLazyLoadingTest extends HibernateBaseTest {
+
+    @Test
+    public void whenInOneToOneRelationshipFetchTypeIsLazy_ThenDespiteThatThereTwoSelect() {
+        doInTransaction(session -> {
+            User user = session.find(User.class, 1L);
+            System.out.println(user.getId());
+        });
+    }
+
+    @Test
+    public void whenSelectChildInOneToOneRelationshipFetchTypeIsLazy_ThenExecuteOneSelect() {
+        doInTransaction(session -> {
+            Staff staff = session.find(Staff.class, 1L);
+            System.out.println(staff.getId());
+        });
+    }
+
     @Override
     protected Class<?>[] entities() {
         return new Class[]{
@@ -39,22 +65,6 @@ public class OneToOneWithLazyLoadingTest extends HibernateBaseTest {
 
             session.persist(user1);
             session.persist(user2);
-        });
-    }
-
-    @Test
-    public void whenInOneToOneRelationshipFetchTypeIsLazy_ThenDespiteThatThereTwoSelect() {
-        doInTransaction(session -> {
-            User user = session.find(User.class, 1L);
-            System.out.println(user.getId());
-        });
-    }
-
-    @Test
-    public void whenSelectChildInOneToOneRelationshipFetchTypeIsLazy_ThenExecuteOneSelect() {
-        doInTransaction(session -> {
-            Staff staff = session.find(Staff.class, 1L);
-            System.out.println(staff.getId());
         });
     }
 
