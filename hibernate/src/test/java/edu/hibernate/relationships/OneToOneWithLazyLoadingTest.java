@@ -10,7 +10,13 @@ import org.junit.Test;
 import javax.persistence.*;
 import java.util.Objects;
 
-
+/**
+ * Based on article:
+ * https://vladmihalcea.com/the-best-way-to-map-a-onetoone-relationship-with-jpa-and-hibernate/
+ * <p>
+ * Useful links:
+ * https://hibernate.atlassian.net/browse/HHH-10771
+ */
 public class OneToOneWithLazyLoadingTest extends HibernateBaseTest {
     @Override
     protected Class<?>[] entities() {
