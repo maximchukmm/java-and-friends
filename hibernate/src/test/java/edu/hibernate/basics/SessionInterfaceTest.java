@@ -543,6 +543,12 @@ public class SessionInterfaceTest extends HibernateBaseTest {
         });
     }
 
+    //todo когда одна запись уже есть в базе - в транзации добавляется новая - в той же транзакции запрос на обе записи по фильтру
+    @Test
+    public void When_Then_12() {
+        throw new RuntimeException();
+    }
+
     @Entity(name = "SimpleEntity")
     @Table(name = "simple_entity")
     @Data
