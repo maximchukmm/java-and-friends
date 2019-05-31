@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.20</version>
+            <version>1.18.8</version>
         </dependency>
 
         <!--=================================Joda-time=================================-->
@@ -63,7 +63,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.8</version>
+            <version>2.9.9</version>
         </dependency>
     </dependencies>
 
