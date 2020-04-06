@@ -51,9 +51,10 @@ abstract public class HibernateBaseTest {
     }
 
     protected <T> T doInTransaction(TransactionFunction<T> function) {
-        T result = null;
+        T result;
         Session session = null;
         Transaction transaction = null;
+        //todom rewrite with try-with-resources
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();

@@ -73,11 +73,11 @@ public class EnumTest {
         assertTrue(firstNullPattern == secondNullPattern);
     }
 
-    public enum Pattern {
+    enum Pattern {
         FACADE, FABRIC, SINGLETON, DECORATOR;
     }
 
-    public enum Framework {
+    enum Framework {
         SPRING, HIBERNATE, STRUTS, VAADIN, JSF;
     }
 }
