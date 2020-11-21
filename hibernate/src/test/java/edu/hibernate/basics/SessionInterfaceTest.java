@@ -7,10 +7,21 @@ import lombok.NoArgsConstructor;
 import org.hibernate.UnresolvableObjectException;
 import org.junit.Test;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PersistenceException;
+import javax.persistence.Table;
 import java.math.BigInteger;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 public class SessionInterfaceTest extends HibernateBaseTest {
     @Override
@@ -295,7 +306,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_1() { //todom rename
+    public void When_Then_1() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -320,7 +331,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_2() { //todom rename
+    public void When_Then_2() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -345,7 +356,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_3() { //todom rename
+    public void When_Then_3() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -370,7 +381,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_4() { //todom rename
+    public void When_Then_4() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -396,7 +407,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_6() { //todom rename
+    public void When_Then_6() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -420,7 +431,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_7() { //todom rename
+    public void When_Then_7() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -444,7 +455,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_8() { //todom rename
+    public void When_Then_8() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -470,7 +481,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_9() { //todom rename
+    public void When_Then_9() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -495,7 +506,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_10() { //todom rename
+    public void When_Then_10() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -520,7 +531,7 @@ public class SessionInterfaceTest extends HibernateBaseTest {
     }
 
     @Test
-    public void When_Then_11() { //todom rename
+    public void When_Then_11() { //todo rename
         Long id = doInTransaction(session -> {
             SimpleEntity entity = new SimpleEntity("Old Title");
             session.persist(entity);
@@ -543,10 +554,9 @@ public class SessionInterfaceTest extends HibernateBaseTest {
         });
     }
 
-    //todo когда одна запись уже есть в базе - в транзации добавляется новая - в той же транзакции запрос на обе записи по фильтру
     @Test
     public void When_Then_12() {
-        throw new RuntimeException();
+        //todo когда одна запись уже есть в базе - в транзакции добавляется новая - в той же транзакции запрос на обе записи по фильтру
     }
 
     @Entity(name = "SimpleEntity")

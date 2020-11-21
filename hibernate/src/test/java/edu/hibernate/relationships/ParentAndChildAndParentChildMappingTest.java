@@ -9,15 +9,30 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.junit.Test;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
 import static edu.hibernate.relationships.ParentAndChildAndParentChildMappingTest.Vehicle.Type.BICYCLE;
 import static edu.hibernate.relationships.ParentAndChildAndParentChildMappingTest.Vehicle.Type.UNICYCLE;
-import static java.time.Month.*;
-import static org.junit.Assert.*;
+import static java.time.Month.APRIL;
+import static java.time.Month.AUGUST;
+import static java.time.Month.MAY;
+import static java.time.Month.SEPTEMBER;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ParentAndChildAndParentChildMappingTest extends HibernateBaseTest {
     @Override

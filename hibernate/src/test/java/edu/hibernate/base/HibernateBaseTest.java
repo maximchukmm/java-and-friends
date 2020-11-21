@@ -54,7 +54,7 @@ abstract public class HibernateBaseTest {
         T result;
         Session session = null;
         Transaction transaction = null;
-        //todom rewrite with try-with-resources
+        //todo rewrite with try-with-resources
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();

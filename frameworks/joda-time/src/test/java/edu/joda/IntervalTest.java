@@ -9,8 +9,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static edu.joda.util.JodaUtils.*;
-import static org.junit.Assert.*;
+import static edu.joda.util.JodaUtils.EUROPE_MOSCOW;
+import static edu.joda.util.JodaUtils.dateTime;
+import static edu.joda.util.JodaUtils.interval;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 public class IntervalTest {
 

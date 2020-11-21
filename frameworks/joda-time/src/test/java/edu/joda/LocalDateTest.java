@@ -13,7 +13,11 @@ import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Arrays;
 
-import static edu.joda.util.JodaUtils.*;
+import static edu.joda.util.JodaUtils.EUROPE_MOSCOW;
+import static edu.joda.util.JodaUtils.UTC;
+import static edu.joda.util.JodaUtils.dateTime;
+import static edu.joda.util.JodaUtils.localDate;
+import static edu.joda.util.JodaUtils.localTime;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 

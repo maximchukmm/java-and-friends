@@ -8,7 +8,7 @@ import java.util.TimeZone;
 public class TimeZoneTest {
 
     @Test
-    //todom rename method
+    //todo rename method
     public void test001() {
         Arrays.stream(TimeZone.getAvailableIDs())
             .map(TimeZone::getTimeZone)

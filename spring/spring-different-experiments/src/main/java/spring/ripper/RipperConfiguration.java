@@ -1,10 +1,9 @@
 package spring.ripper;
 
-import spring.ripper.awaredemo.AwareInterfaceBeanPostProcessor;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import spring.ripper.awaredemo.AwareInterfaceBeanPostProcessor;
 
 @Configuration
 @ComponentScan("spring.ripper")

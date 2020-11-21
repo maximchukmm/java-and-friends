@@ -1,7 +1,7 @@
 package edu.joda;
 
-import org.jfree.data.time.Week;
-import org.joda.time.*;
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
 
 import java.util.List;
 import java.util.stream.Stream;

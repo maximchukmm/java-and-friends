@@ -11,7 +11,14 @@ import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.Audited;
 import org.junit.Test;
 
-import javax.persistence.*;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Basic;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Comparator;
 import java.util.List;
 

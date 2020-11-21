@@ -1,6 +1,5 @@
 package edu.joda;
 
-import edu.joda.util.JodaUtils;
 import org.jfree.data.time.Week;
 import org.joda.time.DateTime;
 import org.joda.time.IllegalInstantException;
@@ -8,8 +7,18 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.junit.Test;
 
-import static edu.joda.util.JodaUtils.*;
-import static org.junit.Assert.*;
+import static edu.joda.util.JodaUtils.EUROPE_MOSCOW;
+import static edu.joda.util.JodaUtils.EUROPE_ROME;
+import static edu.joda.util.JodaUtils.UTC;
+import static edu.joda.util.JodaUtils.dateTime;
+import static edu.joda.util.JodaUtils.dateTimeWithMillis;
+import static edu.joda.util.JodaUtils.hoursToMillis;
+import static edu.joda.util.JodaUtils.localDate;
+import static edu.joda.util.JodaUtils.localTime;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DateTimeTest {
     @Test

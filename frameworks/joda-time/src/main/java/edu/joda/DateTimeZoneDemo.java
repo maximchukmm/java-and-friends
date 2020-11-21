@@ -4,9 +4,7 @@ import lombok.Data;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
-import java.util.List;
 import java.util.TimeZone;
-import java.util.stream.Collectors;
 
 public class DateTimeZoneDemo {
     public static void main(String[] args) {

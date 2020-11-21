@@ -1,6 +1,10 @@
 package edu.reflection.entityinfoextractor.uniqueconstraints;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import static edu.reflection.entityinfoextractor.ClassInfoExtractor.extractUniqueColumnNames;
 

@@ -1,8 +1,8 @@
 package spring.ripper.bean;
 
-import spring.ripper.Quoter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import spring.ripper.Quoter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,7 +8,14 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.junit.Test;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PersistenceException;
+import javax.persistence.Table;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;

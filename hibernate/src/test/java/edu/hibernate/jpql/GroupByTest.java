@@ -2,12 +2,16 @@ package edu.hibernate.jpql;
 
 import edu.hibernate.base.HibernateBaseTest;
 import lombok.Data;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.*;
-import java.util.Arrays;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

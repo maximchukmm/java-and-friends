@@ -12,7 +12,6 @@
     <modules>
         <module>books</module>
         <module>chaos</module>
-        <module>courses</module>
         <module>frameworks</module>
         <module>hibernate</module>
         <module>java</module>

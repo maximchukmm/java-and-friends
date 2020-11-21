@@ -2,8 +2,8 @@ package spring.severalservices.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import spring.severalservices.service.iface.ServiceHolder;
 import spring.severalservices.service.iface.MyService;
+import spring.severalservices.service.iface.ServiceHolder;
 
 import java.util.Collection;
 import java.util.HashMap;

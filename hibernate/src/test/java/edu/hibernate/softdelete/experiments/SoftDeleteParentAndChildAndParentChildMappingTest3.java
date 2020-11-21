@@ -11,7 +11,18 @@ import org.hibernate.annotations.Where;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -21,7 +32,10 @@ import java.util.List;
 
 import static edu.hibernate.softdelete.experiments.SoftDeleteParentAndChildAndParentChildMappingTest3.Vehicle.Type.BICYCLE;
 import static edu.hibernate.softdelete.experiments.SoftDeleteParentAndChildAndParentChildMappingTest3.Vehicle.Type.UNICYCLE;
-import static java.time.Month.*;
+import static java.time.Month.APRIL;
+import static java.time.Month.AUGUST;
+import static java.time.Month.MAY;
+import static java.time.Month.SEPTEMBER;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

@@ -167,8 +167,8 @@ public class Quick {
 //        System.out.println(Arrays.toString(Locale.getAvailableLocales()));
 //        System.out.println(Arrays.toString(Locale.getISOCountries()));
 
-        String abc = "abc";
-        System.out.println(abc.substring(0, 1).toUpperCase() + abc.substring(1));
+//        String abc = "abc";
+//        System.out.println(abc.substring(0, 1).toUpperCase() + abc.substring(1));
     }
 
     static <T> T myGenericFunction(T v1, T v2) {
@@ -221,4 +221,17 @@ public class Quick {
     private static boolean equals(Object a, Object b) {
         return (a == b) || (a != null && a.equals(b));
     }
+
+//    class MyClass {
+//        private final int number;
+//
+//        MyClass(int number) {
+//            this.number = number;
+//        }
+//
+//        @Override
+//        public boolean equals(MyClass o) {
+//            return super.equals(o);
+//        }
+//    }
 }

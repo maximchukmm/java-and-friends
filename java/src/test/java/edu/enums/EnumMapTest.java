@@ -16,7 +16,7 @@ public class EnumMapTest {
     public void enumMappingBetweenTwoEnums() {
         for (WinterFull winterFull : WinterFull.values()) {
             WinterShort winterShort = WinterShort.fromWinterFull(winterFull);
-            System.out.println(winterShort.readableForm); //todom make actual assertions instead of prints
+            System.out.println(winterShort.readableForm); //todo make actual assertions instead of prints
             System.out.println(winterShort.winterFull);
         }
     }

@@ -1,6 +1,10 @@
 package edu.hibernate.lombok.gettersetter.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity(name = "EntityWithoutGetterAndSetter")
 @Table(name = "entity_without_getter_and_setter")

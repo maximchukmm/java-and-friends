@@ -1,8 +1,16 @@
 package edu.hibernate.lombok.gettersetter.entity;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity(name = "EntityWithPrivateGetterAndSetter")
 @Table(name = "entity_with_private_getter_and_setter")

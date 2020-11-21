@@ -6,6 +6,7 @@ import edu.dto.QueryResponseDTO;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.collection.IsCollectionWithSize;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class JdbcTemplateDemoServiceTest {
     @Autowired
     private JdbcTemplateDemoService jdbcTemplateDemoService;

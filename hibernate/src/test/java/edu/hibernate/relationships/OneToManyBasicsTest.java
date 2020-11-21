@@ -6,7 +6,15 @@ import lombok.NoArgsConstructor;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +22,7 @@ import java.util.Objects;
 public class OneToManyBasicsTest extends HibernateBaseTest {
 
     @Test
-    public void whenParentWithoutChildren_ThenRetrieveParentWithEmptyCollectionOfChildre() {
+    public void whenParentWithoutChildren_ThenRetrieveParentWithEmptyCollectionOfChildren() {
         doInTransaction(session -> {
             session.persist(new Post("Post without comments"));
         });
