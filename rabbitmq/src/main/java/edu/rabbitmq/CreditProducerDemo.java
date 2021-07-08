@@ -127,15 +127,15 @@ public class CreditProducerDemo {
     }
 
     private static String randomDeltaValue() {
-        double value = RANDOM.nextDouble();
+        double value = RANDOM.nextDouble() * 10_000;
 
-        return String.format("%f.2", value);
+        return String.format("%.2f", value);
     }
 
     private static String randomUsdEquivalent() {
-        double value = RANDOM.nextDouble();
+        double value = RANDOM.nextDouble() * 10_000;
 
-        return String.format("%f.2", value);
+        return String.format("%.2f", value);
     }
 
     private static <T> T randomElement(List<T> list) {
