@@ -18,6 +18,7 @@
         <module>java</module>
         <module>spring</module>
         <module>contests</module>
+        <module>rabbitmq</module>
     </modules>
 
 </project>
