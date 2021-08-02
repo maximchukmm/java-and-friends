@@ -1,4 +1,4 @@
-package edu.lambdaandstream;
+package edu.other;
 
 import java.util.Optional;
 

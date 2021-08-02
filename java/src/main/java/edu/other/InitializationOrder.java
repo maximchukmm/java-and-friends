@@ -45,6 +45,13 @@ class MyInitializationOrderClass {
         System.out.println("block initialization 03");
     }
 
+    private Integer number = generateNumber();
+
+    private static Integer generateNumber() {
+        System.out.println("generate number");
+        return 123;
+    }
+
     private String string;
 
 
