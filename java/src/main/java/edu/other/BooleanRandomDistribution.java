@@ -1,8 +1,8 @@
-package edu;
+package edu.other;
 
 import java.util.Random;
 
-public class DifferentExperiments {
+public class BooleanRandomDistribution {
     public static void main(String[] args) {
         Random random = new Random(System.currentTimeMillis());
 

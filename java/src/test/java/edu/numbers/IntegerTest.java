@@ -14,7 +14,8 @@ public class IntegerTest {
     public static void setUp() {
         lowIntegerCacheValueIncluded = -127;
         highIntegerCacheValueExcluded = 128;
-        String integerCacheHighPropValue = sun.misc.VM.getSavedProperty("java.lang.Integer.IntegerCache.high");
+        String integerCacheHighPropValue = System.getProperty("java.lang.Integer.IntegerCache.high");
+//        String integerCacheHighPropValue = sun.misc.VM.getSavedProperty("java.lang.Integer.IntegerCache.high");
         if (integerCacheHighPropValue != null)
             highIntegerCacheValueExcluded = Math.max(highIntegerCacheValueExcluded, Integer.parseInt(integerCacheHighPropValue));
     }
