@@ -1,6 +1,7 @@
 package edu.hibernate.namedquery.experiments;
 
 import edu.hibernate.base.HibernateBaseTest;
+import edu.hibernate.util.HibernateUtils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Loader;
@@ -52,17 +53,18 @@ public class NamedQueryWithSoftDeleteTest extends HibernateBaseTest {
 
         doInTransaction(session -> {
             // todo clean test
-//            Comment comment = HibernateUtils.selectByIdNative(session, Comment.class, 1L);
-//            System.err.println(comment.getPost().getId());
+            Comment commentByIdWithoutJoin = HibernateUtils.selectByIdNative(session, Comment.class, 1L);
+            System.err.println(commentByIdWithoutJoin.post.id);
+            System.err.println(commentByIdWithoutJoin.getPost().getId());
 //            System.err.println(comment);
 
-            Comment comment = session.createNativeQuery(
+            Comment commentByIdWithJoin = session.createNativeQuery(
                     "SELECT * FROM comment c INNER JOIN post p ON c.post_id = p.id WHERE c.id = 1",
                     Comment.class).getSingleResult();
 
-            System.err.println(comment.post.id);
-            System.err.println(comment.getPost().getId());
-            System.err.println(comment);
+            System.err.println(commentByIdWithJoin.post.id);
+            System.err.println(commentByIdWithJoin.getPost().getId());
+//            System.err.println(comment);
         });
     }
 

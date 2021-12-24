@@ -10,13 +10,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>books</module>
         <module>chaos</module>
         <module>frameworks</module>
         <module>hibernate</module>
         <module>java</module>
         <module>spring</module>
-        <module>contests</module>
+        <module>edu</module>
     </modules>
 
 </project>
