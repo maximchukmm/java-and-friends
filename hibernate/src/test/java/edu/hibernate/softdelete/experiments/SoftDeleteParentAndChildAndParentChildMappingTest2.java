@@ -5,6 +5,7 @@ import edu.hibernate.util.HibernateUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.ObjectNotFoundException;
 import org.hibernate.annotations.Loader;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -13,19 +14,19 @@ import org.hibernate.annotations.Where;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ForeignKey;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ import static java.time.Month.AUGUST;
 import static java.time.Month.MAY;
 import static java.time.Month.SEPTEMBER;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 public class SoftDeleteParentAndChildAndParentChildMappingTest2 extends HibernateBaseTest {
@@ -134,7 +136,7 @@ public class SoftDeleteParentAndChildAndParentChildMappingTest2 extends Hibernat
         });
     }
 
-    @Test(expected = EntityNotFoundException.class)
+    @Test(expected = ObjectNotFoundException.class)
     public void whenRemoveAllVehicles_ThenWhileGettingMappingsWithSelectAllNativeThrowEntityNotFoundException() {
         doInTransaction(session -> {
             List<Vehicle> vehicles = HibernateUtils.selectAllJpql(session, Vehicle.class);
@@ -144,7 +146,7 @@ public class SoftDeleteParentAndChildAndParentChildMappingTest2 extends Hibernat
         doInTransaction(session -> {
             List<OwnerVehicleMapping> ownerVehicleMappings = HibernateUtils.selectAllNative(session, OwnerVehicleMapping.class);
 
-            assertTrue(ownerVehicleMappings.isEmpty());
+            assertNull(ownerVehicleMappings.get(0).getVehicle());
         });
     }
 

@@ -2,13 +2,14 @@ package edu.hibernate.other;
 
 import edu.hibernate.base.HibernateBaseTest;
 import edu.hibernate.util.HibernateUtils;
+import jakarta.persistence.Column;
 import org.hibernate.query.NativeQuery;
 import org.junit.Test;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -114,7 +115,7 @@ public class EqualsAndHashCodeTest extends HibernateBaseTest {
         doInTransaction(session -> {
             NativeQuery nativeQuery = session.createNativeQuery(
                 "UPDATE bad_equals_bad_hash_code " +
-                    "SET value = 'new info' " +
+                    "SET val = 'new info' " +
                     "WHERE id = 1");
             nativeQuery.executeUpdate();
 
@@ -145,6 +146,7 @@ public class EqualsAndHashCodeTest extends HibernateBaseTest {
         @GeneratedValue
         private Long id;
 
+        @Column(name = "val")
         private String value;
 
 

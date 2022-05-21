@@ -11,21 +11,21 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.junit.Test;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.MapsId;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -123,7 +123,6 @@ public class SoftDeleteWithSeveralMappedEntitiesTest extends HibernateBaseTest {
             Post post = new Post();
             post.setId(1L);
             post.setTitle("Hibernate");
-            session.persist(post);
 
             PostComment comment1 = new PostComment();
             comment1.setId(1L);
@@ -134,6 +133,8 @@ public class SoftDeleteWithSeveralMappedEntitiesTest extends HibernateBaseTest {
             comment2.setId(2L);
             comment2.setReview("Not bad...");
             post.addComment(comment2);
+
+            session.persist(post);
         });
     }
 

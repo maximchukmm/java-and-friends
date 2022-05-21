@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.envers.RevisionType;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,7 @@ abstract public class HibernateUtils {
         List<RevisionPojo> revisionPojos = new ArrayList<>(revisions.size());
         for (Object[] revision : revisions) {
             RevisionPojo revisionPojo = new RevisionPojo();
-            revisionPojo.setId((BigInteger) revision[0]);
+            revisionPojo.setId(BigInteger.valueOf((Long) revision[0]));
             revisionPojo.setRev((Integer) revision[1]);
             revisionPojo.setRevType(RevisionType.fromRepresentation(revision[2]));
             revisionPojos.add(revisionPojo);

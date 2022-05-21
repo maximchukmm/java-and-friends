@@ -6,19 +6,20 @@ import edu.hibernate.util.RevisionPojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.AssertionFailure;
+import org.hibernate.HibernateException;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.Audited;
 import org.junit.Test;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Basic;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.Comparator;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class EntityWithAttributeConverterAndStoreDataAtDeleteIsSetToFalseTest ex
      * Should the entity data be stored in the revision when the entity is deleted (instead of only storing the id and all other properties as null).
      * (from http://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html#envers)
      */
-    @Test(expected = AssertionFailure.class)
+    @Test(expected = HibernateException.class)
     public void whenRemoveAuditedEntityWithBadAttributeConverterWithPropertyStoreDataAtDeleteSetToDefault_ThenThrowAssertionFailureException() {
         EntityWithBadAttributeConverter createdEntity = doInTransaction(session -> {
             EntityWithBadAttributeConverter entity = new EntityWithBadAttributeConverter();

@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 
 public class SmallTests {
 
-    static class MyBoolean {
+    private static class MyBoolean {
 
         boolean getTrue() {
             return true;

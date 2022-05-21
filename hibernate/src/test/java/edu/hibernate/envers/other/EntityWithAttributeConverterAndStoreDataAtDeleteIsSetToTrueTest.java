@@ -7,14 +7,14 @@ import org.hibernate.envers.Audited;
 import org.hibernate.envers.configuration.EnversSettings;
 import org.junit.Test;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Basic;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Convert;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -85,7 +85,7 @@ abstract public class HibernateBaseTest {
 
             Metadata metadata = metadataSources
                 .getMetadataBuilder()
-                .enableNewIdentifierGeneratorSupport(true)
+//                .enableNewIdentifierGeneratorSupport(true)
                 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
                 .build();
 

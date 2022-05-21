@@ -18,22 +18,22 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.2.12.Final</version>
+            <version>6.0.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.2.12.Final</version>
+            <version>5.6.8.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-envers</artifactId>
-            <version>5.2.12.Final</version>
+            <version>6.0.1.Final</version>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>3.2.0</version>
+            <version>5.0.1</version>
         </dependency>
         <!--=================================Hibernate=================================-->
 
@@ -47,13 +47,13 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.6.0</version>
+            <version>4.5.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.197</version>
+            <version>2.1.212</version>
             <scope>test</scope>
         </dependency>
         <!--=================================Unit testing=================================-->
@@ -93,9 +93,23 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
+            <version>1.18.24</version>
         </dependency>
         <!--=================================Other=================================-->
+
+<!--        &lt;!&ndash; API, java.xml.bind module &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>jakarta.xml.bind</groupId>-->
+<!--            <artifactId>jakarta.xml.bind-api</artifactId>-->
+<!--            <version>2.3.2</version>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; Runtime, com.sun.xml.bind module &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.glassfish.jaxb</groupId>-->
+<!--            <artifactId>jaxb-runtime</artifactId>-->
+<!--            <version>2.3.2</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -104,8 +118,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>17</source>
+                    <target>17</target>
+                    <release>17</release>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

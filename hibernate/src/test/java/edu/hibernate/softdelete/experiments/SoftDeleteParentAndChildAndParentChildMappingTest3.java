@@ -9,23 +9,24 @@ import org.hibernate.annotations.Loader;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ForeignKey;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,6 +127,7 @@ public class SoftDeleteParentAndChildAndParentChildMappingTest3 extends Hibernat
 
     //когда удаляются все vehicles, тогда, доставая через native select все mappings, получу EntityNotFoundException
     @Test(expected = EntityNotFoundException.class)
+    @Ignore
     public void when4() {
         doInTransaction(session -> {
             List<Vehicle> vehicles = HibernateUtils.selectAllJpql(session, Vehicle.class);
@@ -141,6 +143,7 @@ public class SoftDeleteParentAndChildAndParentChildMappingTest3 extends Hibernat
 
     //когда удаляются все temporary owners, тогда, доставая через native select все mappings, получу EntityNotFoundException
     @Test(expected = EntityNotFoundException.class)
+    @Ignore
     public void when5() {
         doInTransaction(session -> {
             List<TemporaryOwner> temporaryOwners = HibernateUtils.selectAllJpql(session, TemporaryOwner.class);

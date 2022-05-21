@@ -2,6 +2,7 @@ package edu.hibernate.basics;
 
 import edu.hibernate.base.HibernateBaseTest;
 import edu.hibernate.util.HibernateUtils;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,11 +10,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,14 +43,9 @@ public class BatchOperationsTest extends HibernateBaseTest {
 
     @Test
     public void whenPersistenceContextSizeIsEqualToBatchSize_ThenFlushCache() {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.getTransaction();
-
-        try {
-            transaction.begin();
-
+        doInTransaction(session -> {
             for (int i = 0; i < entityCount; i++) {
-                if (i % batchSize == 0) {
+                if (i % batchSize == 0 && i != 0) {
                     session.flush();
                     session.clear();
                 }
@@ -57,16 +53,33 @@ public class BatchOperationsTest extends HibernateBaseTest {
                 ArithmeticProgression value = new ArithmeticProgression(i + 1);
                 session.persist(value);
             }
+        });
 
-            transaction.commit();
-        } catch (RuntimeException e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
-        } finally {
-            session.close();
-        }
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = session.getTransaction();
+//
+//        try {
+//            transaction.begin();
+//
+//            for (int i = 0; i < entityCount; i++) {
+//                if (i % batchSize == 0) {
+//                    session.flush();
+//                    session.clear();
+//                }
+//
+//                ArithmeticProgression value = new ArithmeticProgression(i + 1);
+//                session.persist(value);
+//            }
+//
+//            transaction.commit();
+//        } catch (RuntimeException e) {
+//            if (transaction.isActive()) {
+//                transaction.rollback();
+//            }
+//            throw e;
+//        } finally {
+//            session.close();
+//        }
     }
 
     @Test
@@ -99,7 +112,7 @@ public class BatchOperationsTest extends HibernateBaseTest {
     @Test
     public void whenInsertSeveralEntitiesInSingleQuery_ThenSelectAllReturnThatNumberOfEntities() {
         int numberOfInserts = doInTransaction(session -> {
-            String batchInsert = "INSERT INTO arithmetic_progression(id, value) VALUES " +
+            String batchInsert = "INSERT INTO arithmetic_progression(id, val) VALUES " +
                 "(1, 10), " +
                 "(2, 15), " +
                 "(3, 20), " +
@@ -125,6 +138,7 @@ public class BatchOperationsTest extends HibernateBaseTest {
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
 
+        @Column(name = "val")
         private Integer value;
 
         ArithmeticProgression(Integer value) {
