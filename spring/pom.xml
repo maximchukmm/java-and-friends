@@ -18,6 +18,7 @@
         <module>spring-boot-and-postgres</module>
         <module>spring-different-experiments</module>
         <module>spring-boot-hibernate-entity-listener</module>
+        <module>spring-boot-different-experiments</module>
     </modules>
 
 </project>

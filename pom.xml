@@ -16,6 +16,7 @@
         <module>java</module>
         <module>spring</module>
         <module>edu</module>
+        <module>jmh</module>
     </modules>
 
 </project>
