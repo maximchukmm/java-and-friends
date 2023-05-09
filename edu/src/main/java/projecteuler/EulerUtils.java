@@ -30,7 +30,7 @@ public abstract class EulerUtils {
         }
     }
 
-    public static long calculateArithmeticSum(long a1, long an, long n) {
+    public static long arithmeticSum(long a1, long an, long n) {
         return ((a1 + an) * n) / 2;
     }
 }

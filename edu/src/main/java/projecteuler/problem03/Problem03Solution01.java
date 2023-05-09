@@ -14,8 +14,11 @@ import static projecteuler.EulerUtils.printPrimeFactorsOfNumber;
 //todo check solution via unit-tests
 public class Problem03Solution01 {
     public static void main(String[] args) {
-        printPrimeFactorsOfNumber(600851475143L);
-        System.out.println("\nThe largest prime factor of the number 600851475143 is " + Solution01.solve(600851475143L));
+        long number = 600851475143L;
+
+        printPrimeFactorsOfNumber(number);
+
+        System.out.println("\nThe largest prime factor of the number 600851475143 is " + Solution01.solve(number));
     }
 }
 

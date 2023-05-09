@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class OptimizedBogosort {
     public static void main(String[] args) {
-        int n = 5;
+        int n = 11;
 
         int[] array = new int[n];
 

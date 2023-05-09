@@ -21,7 +21,7 @@ package projecteuler.problem01;
  * (5*k5 * (k5 + 1) + 3*k3 * (k3 + 1) - 15*k15 * (k15 + 1))/2
  * */
 
-import static projecteuler.EulerUtils.calculateArithmeticSum;
+import static projecteuler.EulerUtils.arithmeticSum;
 
 public class Problem01Solution01 {
 
@@ -29,8 +29,8 @@ public class Problem01Solution01 {
         final long k3 = (n - 1) / 3;
         final long k5 = (n - 1) / 5;
         final long k15 = (n - 1) / 15;
-        return calculateArithmeticSum(3, 3 * k3, k3)
-            + calculateArithmeticSum(5, 5 * k5, k5)
-            - calculateArithmeticSum(15, 15 * k15, k15);
+        return arithmeticSum(3, 3 * k3, k3)
+            + arithmeticSum(5, 5 * k5, k5)
+            - arithmeticSum(15, 15 * k15, k15);
     }
 }

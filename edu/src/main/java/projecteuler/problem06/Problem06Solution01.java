@@ -13,7 +13,7 @@ package projecteuler.problem06;
  * Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
  */
 
-import static projecteuler.EulerUtils.calculateArithmeticSum;
+import static projecteuler.EulerUtils.arithmeticSum;
 
 /*
  * Solution:
@@ -61,7 +61,7 @@ import static projecteuler.EulerUtils.calculateArithmeticSum;
 public class Problem06Solution01 {
 
     public static int solve(int n) {
-        int sum = (int) calculateArithmeticSum(1, n, n);
+        int sum = (int) arithmeticSum(1, n, n);
 
         int result = 0;
 

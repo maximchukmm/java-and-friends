@@ -30,8 +30,8 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @BenchmarkMode({Mode.AverageTime})
 @Fork(value = 1, warmups = 1)
-@Warmup(iterations = 3)
-@Measurement(iterations = 3)
+@Warmup(iterations = 2)
+@Measurement(iterations = 2)
 public class ListTreeSetSortBenchmark {
     public static void main(String[] args) throws RunnerException {
         Options opt = new OptionsBuilder()
@@ -44,6 +44,7 @@ public class ListTreeSetSortBenchmark {
     @State(Scope.Benchmark)
     public static class ExecutionPlan {
 
+//        @Param({"10", "100", "1000", "10000"})
         @Param({"10", "100", "1000", "10000", "100000", "1000000"})
         public int size;
 
@@ -51,7 +52,7 @@ public class ListTreeSetSortBenchmark {
 
         @Setup(Level.Iteration)
         public void setUp() {
-            random = new Random();
+            random = new Random(size);
         }
 
         public int randomInt() {
@@ -61,7 +62,8 @@ public class ListTreeSetSortBenchmark {
 
     @Benchmark
     public void list(ExecutionPlan plan, Blackhole blackhole) {
-        List<Integer> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<>(plan.size);
+//        List<Integer> list = new ArrayList<>();
 
         for (int i = 0; i < plan.size; i++) {
             list.add(plan.randomInt());
